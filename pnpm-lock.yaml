@@ -71,6 +71,14 @@ importers:
         specifier: workspace:*
         version: link:..
 
+  packages/geopf: {}
+
+  packages/geopf/example:
+    dependencies:
+      '@map3d/plugin-geopf':
+        specifier: workspace:*
+        version: link:..
+
   packages/plugin-template: {}
 
   packages/plugin-template/example:
