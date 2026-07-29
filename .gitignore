@@ -3,3 +3,5 @@ dist/
 .idea/
 *.log
 example/dist/
+.env
+**/.env

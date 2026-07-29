@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@map3d/plugin-cameras': resolve(__dirname, '../src/index.ts'),
+      '@map3d/plugin-windy': resolve(__dirname, '../src/index.ts'),
       'three/addons': resolve(__dirname, '../../../node_modules/three/examples/jsm'),
     },
   },

@@ -1,0 +1,201 @@
+{
+    "total": 4,
+    "webcams": [
+        {
+            "title": "Paris: Quartier Saint-Merri \u203a North-west: Chapelle de Saint Symphorien - Eiffel Tower",
+            "viewCount": 908502,
+            "webcamId": 1515017464,
+            "status": "active",
+            "lastUpdatedOn": "2026-07-29T17:19:51.000Z",
+            "images": {
+                "current": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/current/1515017464/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/current/1515017464/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/current/1515017464/original.jpg"
+                },
+                "sizes": {
+                    "icon": {
+                        "width": 48,
+                        "height": 48
+                    },
+                    "thumbnail": {
+                        "width": 200,
+                        "height": 112
+                    },
+                    "preview": {
+                        "width": 400,
+                        "height": 224
+                    }
+                },
+                "daylight": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/daylight/1515017464/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/daylight/1515017464/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/daylight/1515017464/original.jpg"
+                }
+            },
+            "location": {
+                "city": "Paris",
+                "region": "Ile-de-France",
+                "region_code": "FR.11",
+                "country": "France",
+                "country_code": "FR",
+                "continent": "Europe",
+                "continent_code": "EU",
+                "latitude": 48.85171,
+                "longitude": 2.33651
+            },
+            "urls": {
+                "detail": "https://windy.com/webcams/1515017464",
+                "edit": "https://webcams-admin.windy.com/webcams/1515017464",
+                "provider": "http://www.meteo-paris.com/ile-de-france/webcam-paris.html"
+            }
+        },
+        {
+            "title": "Paris: Palais d\u2019I\u00e9na",
+            "viewCount": 225495,
+            "webcamId": 1706118429,
+            "status": "active",
+            "lastUpdatedOn": "2026-07-29T17:29:43.000Z",
+            "images": {
+                "current": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/current/1706118429/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/current/1706118429/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/current/1706118429/original.jpg"
+                },
+                "sizes": {
+                    "icon": {
+                        "width": 48,
+                        "height": 48
+                    },
+                    "thumbnail": {
+                        "width": 200,
+                        "height": 112
+                    },
+                    "preview": {
+                        "width": 400,
+                        "height": 224
+                    }
+                },
+                "daylight": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/daylight/1706118429/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/daylight/1706118429/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/daylight/1706118429/original.jpg"
+                }
+            },
+            "location": {
+                "city": "Paris",
+                "region": "Ile-de-France",
+                "region_code": "FR.11",
+                "country": "France",
+                "country_code": "FR",
+                "continent": "Europe",
+                "continent_code": "EU",
+                "latitude": 48.86361,
+                "longitude": 2.29222
+            },
+            "urls": {
+                "detail": "https://windy.com/webcams/1706118429",
+                "edit": "https://webcams-admin.windy.com/webcams/1706118429",
+                "provider": "https://www.vision-environnement.com/livecams/webcam.php?webcam=pariscese"
+            }
+        },
+        {
+            "title": "Paris: Quartier de Chaillot: Paris - La tour Eiffel CESE",
+            "viewCount": 220128,
+            "webcamId": 1706619137,
+            "status": "active",
+            "lastUpdatedOn": "2026-07-29T17:21:07.000Z",
+            "images": {
+                "current": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/current/1706619137/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/current/1706619137/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/current/1706619137/original.jpg"
+                },
+                "sizes": {
+                    "icon": {
+                        "width": 48,
+                        "height": 48
+                    },
+                    "thumbnail": {
+                        "width": 200,
+                        "height": 112
+                    },
+                    "preview": {
+                        "width": 400,
+                        "height": 224
+                    }
+                },
+                "daylight": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/daylight/1706619137/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/daylight/1706619137/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/daylight/1706619137/original.jpg"
+                }
+            },
+            "location": {
+                "city": "Paris",
+                "region": "Ile-de-France",
+                "region_code": "FR.11",
+                "country": "France",
+                "country_code": "FR",
+                "continent": "Europe",
+                "continent_code": "EU",
+                "latitude": 48.86386,
+                "longitude": 2.2923
+            },
+            "urls": {
+                "detail": "https://windy.com/webcams/1706619137",
+                "edit": "https://webcams-admin.windy.com/webcams/1706619137",
+                "provider": "https://www.vision-environnement.com/"
+            }
+        },
+        {
+            "title": "Paris \u203a North-west: Beaugrenelle - SeineRiverCruise",
+            "viewCount": 203260,
+            "webcamId": 1721599175,
+            "status": "active",
+            "lastUpdatedOn": "2026-07-29T17:29:08.000Z",
+            "images": {
+                "current": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/current/1721599175/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/current/1721599175/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/current/1721599175/original.jpg"
+                },
+                "sizes": {
+                    "icon": {
+                        "width": 48,
+                        "height": 48
+                    },
+                    "thumbnail": {
+                        "width": 200,
+                        "height": 112
+                    },
+                    "preview": {
+                        "width": 400,
+                        "height": 224
+                    }
+                },
+                "daylight": {
+                    "icon": "https://imgproxy.windy.com/_/icon/plain/daylight/1721599175/original.jpg",
+                    "thumbnail": "https://imgproxy.windy.com/_/thumbnail/plain/daylight/1721599175/original.jpg",
+                    "preview": "https://imgproxy.windy.com/_/preview/plain/daylight/1721599175/original.jpg"
+                }
+            },
+            "location": {
+                "city": "Paris",
+                "region": "Ile-de-France",
+                "region_code": "FR.11",
+                "country": "France",
+                "country_code": "FR",
+                "continent": "Europe",
+                "continent_code": "EU",
+                "latitude": 48.8493,
+                "longitude": 2.28239
+            },
+            "urls": {
+                "detail": "https://windy.com/webcams/1721599175",
+                "edit": "https://webcams-admin.windy.com/webcams/1721599175",
+                "provider": "https://www.meteo-paris.com/"
+            }
+        }
+    ]
+}

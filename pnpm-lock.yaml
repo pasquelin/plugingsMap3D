@@ -14,6 +14,9 @@ importers:
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
+      '@mdi/react':
+        specifier: ^1.6.1
+        version: 1.6.1
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.17
@@ -66,14 +69,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.9
 
-  packages/cameras: {}
-
-  packages/cameras/example:
-    dependencies:
-      '@map3d/plugin-cameras':
-        specifier: workspace:*
-        version: link:..
-
   packages/geopf: {}
 
   packages/geopf/example:
@@ -82,19 +77,19 @@ importers:
         specifier: workspace:*
         version: link:..
 
-  packages/plan-3d: {}
-
-  packages/plan-3d/example:
-    dependencies:
-      '@map3d/plugin-plan-3d':
-        specifier: workspace:*
-        version: link:..
-
   packages/plugin-template: {}
 
   packages/plugin-template/example:
     dependencies:
       '@map3d/plugin-template':
+        specifier: workspace:*
+        version: link:..
+
+  packages/windy: {}
+
+  packages/windy/example:
+    dependencies:
+      '@map3d/plugin-windy':
         specifier: workspace:*
         version: link:..
 
