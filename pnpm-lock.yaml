@@ -77,6 +77,14 @@ importers:
         specifier: workspace:*
         version: link:..
 
+  packages/plan-3d: {}
+
+  packages/plan-3d/example:
+    dependencies:
+      '@map3d/plugin-plan-3d':
+        specifier: workspace:*
+        version: link:..
+
   packages/plugin-template: {}
 
   packages/plugin-template/example:
