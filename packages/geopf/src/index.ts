@@ -1,5 +1,5 @@
 import { mdiOfficeBuildingMarkerOutline } from '@mdi/js'
-import { definePlugin } from 'map3d'
+import { definePlugin, fetchWithPolicy } from 'map3d'
 import { geopfConfig } from './config'
 import { buildGetFeatureUrl, pickBuilding } from './wfs'
 import type { FeatureCollection } from './wfs'
@@ -25,8 +25,7 @@ export const geopfBatiments = () =>
     enabledByDefault: false,
     enrichBuilding: async (hit, ctx) => {
       const url = buildGetFeatureUrl({ lat: hit.info.lat, lng: hit.info.lng, config: ctx.config })
-      const res = await fetch(url, { signal: ctx.signal })
-      if (!res.ok) throw new Error(`geopf WFS ${res.status}`)
+      const res = await fetchWithPolicy(url, {}, ctx.fetchPolicy, ctx.signal, 'geopf')
       const fc = (await res.json()) as FeatureCollection
       const props = pickBuilding(fc, { lat: hit.info.lat, lng: hit.info.lng, config: ctx.config })
       return {

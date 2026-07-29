@@ -59,7 +59,7 @@ function centroid(ring: Ring): { lng: number; lat: number } {
   return { lng: sx / ring.length, lat: sy / ring.length }
 }
 
-/** Bâtiment retenu : contenant le point (matchContaining) sinon centroïde le plus proche. */
+/** Bâtiment retenu : contenant le point (matchContaining), sinon centroïde le plus proche (y compris en repli si matchContaining est actif mais qu'aucun polygone ne contient le point). */
 export function pickBuilding(
   fc: FeatureCollection,
   input: { lat: number; lng: number; config: GeopfConfig },
@@ -68,7 +68,9 @@ export function pickBuilding(
   if (!fc.features.length) return null
   if (config.matchContaining) {
     const hit = fc.features.find((f) => outerRings(f.geometry).some((r) => pointInRing(lng, lat, r)))
-    return hit?.properties ?? null
+    if (hit) return hit.properties
+    // pas de polygone contenant le point (débord toit / skew projection) : repli sur le plus
+    // proche plutôt que de ne rien remonter sur un clic pourtant valide.
   }
   let best: Feature | null = null
   let bestD = Infinity

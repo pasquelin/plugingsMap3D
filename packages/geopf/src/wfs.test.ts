@@ -30,6 +30,18 @@ describe('buildGetFeatureUrl', () => {
     expect(Number(bbox[0])).toBeLessThan(2.3522)
     expect(Number(bbox[2])).toBeGreaterThan(2.3522)
   })
+
+  it('reflète count et apiUrl de la config (passthrough, pas de valeur en dur)', () => {
+    const url = new URL(
+      buildGetFeatureUrl({
+        lat: 48.8566,
+        lng: 2.3522,
+        config: { ...cfg, count: 7, apiUrl: 'https://example.test/wfs' },
+      }),
+    )
+    expect(url.origin + url.pathname).toBe('https://example.test/wfs')
+    expect(url.searchParams.get('COUNT')).toBe('7')
+  })
 })
 
 const fc: FeatureCollection = {
@@ -120,5 +132,11 @@ describe('pickBuilding', () => {
   it('gère une géométrie MultiPolygon (cas réel BDTOPO)', () => {
     const r = pickBuilding(mfc, { lat: 48.8566, lng: 2.3522, config: { ...cfg, matchContaining: true } })
     expect(r?.hauteur).toBe(9)
+  })
+  it('matchContaining=true sans polygone contenant → repli sur le plus proche (pas null)', () => {
+    // point hors des deux polygones ; le plus proche a hauteur 12
+    expect(pickBuilding(twoFc, { lat: 48.857, lng: 2.353, config: { ...cfg, matchContaining: true } })?.hauteur).toBe(
+      12,
+    )
   })
 })
