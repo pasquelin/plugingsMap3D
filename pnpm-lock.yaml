@@ -63,6 +63,14 @@ importers:
         specifier: ^2.0.0
         version: 2.1.9
 
+  packages/cameras: {}
+
+  packages/cameras/example:
+    dependencies:
+      '@map3d/plugin-cameras':
+        specifier: workspace:*
+        version: link:..
+
   packages/demo: {}
 
   packages/demo/example:
