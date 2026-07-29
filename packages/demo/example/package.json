@@ -1,0 +1,8 @@
+{
+  "name": "@map3d/plugin-demo-example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "vite", "build": "vite build" },
+  "dependencies": { "@map3d/plugin-demo": "workspace:*" }
+}

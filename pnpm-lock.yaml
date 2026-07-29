@@ -63,6 +63,14 @@ importers:
         specifier: ^2.0.0
         version: 2.1.9
 
+  packages/demo: {}
+
+  packages/demo/example:
+    dependencies:
+      '@map3d/plugin-demo':
+        specifier: workspace:*
+        version: link:..
+
   packages/plugin-template: {}
 
   packages/plugin-template/example:
