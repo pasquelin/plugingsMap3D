@@ -4,7 +4,7 @@ import type { Layer, FrameContext, PluginLayerContext } from 'map3d'
 type Cfg = { lat: number; lng: number; size: number; color: string }
 
 /**
- * PLACEHDER voie C : dépose un volume repère à (lat,lng), reprojeté chaque frame (le
+ * PLACEHOLDER voie C : dépose un volume repère à (lat,lng), reprojeté chaque frame (le
  * groupe globe peut bouger). Le vrai « Plan 3D » reste à spécifier. Respecte la
  * séparation lecture/écriture : positionnement en `update` (lecture), rien en `project`.
  */
