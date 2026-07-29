@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildGetFeatureUrl } from './wfs'
+import { buildGetFeatureUrl, pickBuilding, type FeatureCollection } from './wfs'
 
 const cfg = {
   searchRadius: 25,
@@ -29,5 +29,96 @@ describe('buildGetFeatureUrl', () => {
     expect(Number(bbox[3])).toBeGreaterThan(48.8566)
     expect(Number(bbox[0])).toBeLessThan(2.3522)
     expect(Number(bbox[2])).toBeGreaterThan(2.3522)
+  })
+})
+
+const fc: FeatureCollection = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: { nature: 'Indifférencié', hauteur: 12 },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [2.352, 48.8564],
+            [2.3524, 48.8564],
+            [2.3524, 48.8568],
+            [2.352, 48.8568],
+            [2.352, 48.8564],
+          ],
+        ],
+      },
+    },
+  ],
+}
+
+// Géométrie MultiPolygon : forme réellement renvoyée par le WFS BDTOPO (Task 5),
+// avec une 3e coordonnée (altitude) par sommet que pointInRing doit ignorer.
+const mfc: FeatureCollection = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: { hauteur: 9 },
+      geometry: {
+        type: 'MultiPolygon',
+        coordinates: [
+          [
+            [
+              [2.352, 48.8564, 0],
+              [2.3524, 48.8564, 0],
+              [2.3524, 48.8568, 0],
+              [2.352, 48.8568, 0],
+              [2.352, 48.8564, 0],
+            ],
+          ],
+        ],
+      },
+    },
+  ],
+}
+
+// Deux bâtiments distincts pour exercer réellement la comparaison de distance au centroïde.
+const twoFc: FeatureCollection = {
+  type: 'FeatureCollection',
+  features: [
+    fc.features[0]!,
+    {
+      type: 'Feature',
+      properties: { hauteur: 30 },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [10, 40],
+            [10.001, 40],
+            [10.001, 40.001],
+            [10, 40.001],
+            [10, 40],
+          ],
+        ],
+      },
+    },
+  ],
+}
+
+describe('pickBuilding', () => {
+  it('retourne les properties du polygone contenant le point', () => {
+    const r = pickBuilding(fc, { lat: 48.8566, lng: 2.3522, config: { ...cfg, matchContaining: true } })
+    expect(r?.hauteur).toBe(12)
+  })
+  it('retourne null sur une FeatureCollection vide', () => {
+    expect(pickBuilding({ type: 'FeatureCollection', features: [] }, { lat: 0, lng: 0, config: cfg })).toBeNull()
+  })
+  it('matchContaining=false → le plus proche du centroïde même si le point est hors polygone', () => {
+    // deux bâtiments : le point (proche de Paris) doit choisir celui-ci (hauteur 12), pas le lointain (hauteur 30)
+    const r = pickBuilding(twoFc, { lat: 49, lng: 3, config: { ...cfg, matchContaining: false } })
+    expect(r?.hauteur).toBe(12)
+  })
+  it('gère une géométrie MultiPolygon (cas réel BDTOPO)', () => {
+    const r = pickBuilding(mfc, { lat: 48.8566, lng: 2.3522, config: { ...cfg, matchContaining: true } })
+    expect(r?.hauteur).toBe(9)
   })
 })
