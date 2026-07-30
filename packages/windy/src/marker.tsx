@@ -18,7 +18,7 @@ export function webcamTooltip(m: MarkerData<unknown>): { title?: ReactNode; cont
     title: m.title,
     content: (
       <div className="m3d-windy-tooltip">
-        {data.thumb ? <img src={data.thumb} alt="" /> : null}
+        {data.thumb ? <img src={data.thumb} alt="" width="100%" style={{ minWidth: 230 }} /> : null}
         {data.place ? <div>{data.place}</div> : null}
       </div>
     ),
