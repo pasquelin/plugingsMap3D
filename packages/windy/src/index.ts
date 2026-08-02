@@ -1,5 +1,5 @@
 import { mdiWebcam } from '@mdi/js'
-import { definePlugin, fetchWithPolicy } from 'map3d'
+import { definePlugin, fetchWithPolicy } from '@pasquelin/map3d'
 import { buildWebcamsUrl, mapWebcams } from './api'
 import type { WindyConfig } from './config'
 import type { WindyResponse } from './api'

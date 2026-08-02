@@ -1,5 +1,5 @@
 import { mdiCubeOutline } from '@mdi/js'
-import { definePlugin } from 'map3d'
+import { definePlugin } from '@pasquelin/map3d'
 import { createPlanLayer } from './layer'
 
 /**

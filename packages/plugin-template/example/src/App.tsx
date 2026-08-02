@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Map } from 'map3d'
+import { Map } from '@pasquelin/map3d'
 import { template } from '@map3d/plugin-template'
 
 /** Exemple autonome : la carte + le seul plugin modèle (le hub de la barre l'active). */

@@ -10,7 +10,7 @@ Voie « enrichir » du contrat plugin — zéro marker, zéro couche 3D : unique
 ## Usage
 
 ```tsx
-import { Map } from 'map3d'
+import { Map } from '@pasquelin/map3d'
 import { geopfBatiments } from '@map3d/plugin-geopf'
 
 <Map plugins={[geopfBatiments()]} />
@@ -24,7 +24,7 @@ Pour lire l'enrichissement dans l'hôte, monter un composant enfant de `<Map>` (
 contexte carte) :
 
 ```tsx
-import { useBuildingEnrichment } from 'map3d'
+import { useBuildingEnrichment } from '@pasquelin/map3d'
 
 function BuildingInfo() {
   const e = useBuildingEnrichment()

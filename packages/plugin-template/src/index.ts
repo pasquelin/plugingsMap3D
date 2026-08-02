@@ -1,6 +1,6 @@
 import { mdiShapePlus } from '@mdi/js'
-import { definePlugin } from 'map3d'
-import type { MarkerData } from 'map3d'
+import { definePlugin } from '@pasquelin/map3d'
+import type { MarkerData } from '@pasquelin/map3d'
 
 /**
  * Modèle minimal à copier pour démarrer un plugin. Voie A (markers procéduraux, zéro

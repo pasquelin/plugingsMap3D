@@ -1,5 +1,5 @@
 import { mdiOfficeBuildingMarkerOutline } from '@mdi/js'
-import { definePlugin, fetchWithPolicy } from 'map3d'
+import { definePlugin, fetchWithPolicy } from '@pasquelin/map3d'
 import { geopfConfig } from './config'
 import { buildGetFeatureUrl, pickBuilding } from './wfs'
 import type { FeatureCollection } from './wfs'

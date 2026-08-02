@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import type { Layer, FrameContext, PluginLayerContext } from 'map3d'
+import type { Layer, FrameContext, PluginLayerContext } from '@pasquelin/map3d'
 
 type Cfg = { lat: number; lng: number; size: number; color: string }
 

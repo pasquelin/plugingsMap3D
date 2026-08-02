@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Map } from 'map3d'
+import { Map } from '@pasquelin/map3d'
 import { plan3d } from '@map3d/plugin-plan-3d'
 
 /** Exemple autonome : la carte + le plugin Plan 3D (placeholder voie C) ; active-le via le hub. */

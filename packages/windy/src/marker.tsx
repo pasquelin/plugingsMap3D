@@ -1,6 +1,6 @@
 import { mdiContentCopy, mdiOpenInNew } from '@mdi/js'
 import Icon from '@mdi/react'
-import type { MarkerData, MenuItem } from 'map3d'
+import type { MarkerData, MenuItem } from '@pasquelin/map3d'
 import type { ReactNode } from 'react'
 
 /** Payload porté par chaque marker webcam (assemblé par `api.ts#mapWebcams`). */

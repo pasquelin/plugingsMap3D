@@ -1,8 +1,14 @@
 {
   "name": "plugingsmap3d",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "license": "MIT",
+  "author": "Alban Pasquelin <alban.pasquelin@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pasquelin/plugingsMap3D.git"
+  },
   "packageManager": "pnpm@9.0.0",
   "scripts": {
     "build": "pnpm -r --filter=./packages/* build",
@@ -11,10 +17,12 @@
     "test:watch": "vitest",
     "lint": "eslint packages",
     "format": "prettier --write \"packages/**/*.{ts,tsx}\"",
-    "format:check": "prettier --check \"packages/**/*.{ts,tsx}\""
+    "format:check": "prettier --check \"packages/**/*.{ts,tsx}\"",
+    "validater": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test",
+    "version:plugins": "node scripts/version.mjs"
   },
   "devDependencies": {
-    "map3d": "file:../map3D",
+    "@pasquelin/map3d": "^0.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "three": "^0.169.0",

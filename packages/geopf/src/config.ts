@@ -1,4 +1,4 @@
-import type { PluginField } from 'map3d'
+import type { PluginField } from '@pasquelin/map3d'
 
 // map3d n'EXPORTE pas son helper interne `PluginConfigOf` (c'est un `declare type`
 // privé utilisé par `definePlugin`). On réplique la même dérivation localement — le

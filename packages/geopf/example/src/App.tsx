@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Map, useBuildingEnrichment } from 'map3d'
+import { Map, useBuildingEnrichment } from '@pasquelin/map3d'
 import { geopfBatiments } from '@map3d/plugin-geopf'
 
 /**

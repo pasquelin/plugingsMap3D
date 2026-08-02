@@ -13,7 +13,7 @@ markers, ou couches de données) — elle démontre l'accès direct à `engine.s
 ## Usage
 
 ```tsx
-import { Map } from 'map3d'
+import { Map } from '@pasquelin/map3d'
 import { plan3d } from '@map3d/plugin-plan-3d'
 
 <Map plugins={[plan3d()]} />

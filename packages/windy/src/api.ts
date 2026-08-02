@@ -1,4 +1,4 @@
-import type { Bounds, MarkerData } from 'map3d'
+import type { Bounds, MarkerData } from '@pasquelin/map3d'
 import type { WindyConfig } from './config'
 import type { WindyMarkerData } from './marker'
 

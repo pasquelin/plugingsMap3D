@@ -9,7 +9,7 @@ en avatar, une infobulle (aperçu + localisation) et un menu (ouvrir / copier le
 ## Usage
 
 ```tsx
-import { Map } from 'map3d'
+import { Map } from '@pasquelin/map3d'
 import { windyWebcams } from '@map3d/plugin-windy'
 
 <Map plugins={[windyWebcams({ apiKey: import.meta.env.VITE_WINDY_API_KEY })]} />
