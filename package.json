@@ -1,7 +1,7 @@
 {
   "name": "plugingsmap3d",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "license": "MIT",
   "author": "Alban Pasquelin <alban.pasquelin@gmail.com>",

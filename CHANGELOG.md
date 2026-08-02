@@ -7,6 +7,8 @@ version unifiée** : un tag `vX.Y.Z` les publie ensemble. `@pasquelin/map3d-plug
 
 ## [Non publié]
 
+## [0.1.1] — 2026-08-02
+
 ### ci : release en OIDC pur
 
 Le trusted publisher npm est configuré pour `@pasquelin/map3d-plugin-geopf` et `-windy` :

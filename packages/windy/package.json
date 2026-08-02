@@ -1,6 +1,6 @@
 {
   "name": "@pasquelin/map3d-plugin-windy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plugin map3D — pose un marker par webcam publique autour de la vue (voie « markers »), via l'API Windy Webcams v3.",
   "type": "module",
   "license": "MIT",
