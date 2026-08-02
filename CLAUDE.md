@@ -65,11 +65,14 @@ Publication **automatique** par GitHub Actions : **pousser un tag `vX.Y.Z` décl
 publication** des paquets publiables. La **provenance** est signée via **OIDC**
 (`id-token: write`).
 
-Auth : **secret `NPM_TOKEN`** (bootstrap). Le premier publish d'un paquet **neuf** ne peut
-pas passer par l'OIDC seul (il renvoie 404 « no permission » : le trusted publisher
-s'attache à un paquet **existant**). Une fois `@pasquelin/map3d-plugin-*` publiés une première fois,
-configurer le **trusted publisher** par paquet côté npm (repo `pasquelin/plugingsMap3D` →
-`release.yml`) et retirer le token pour passer en OIDC pur.
+Auth : **npm Trusted Publishing (OIDC)** — **aucun token**. Le trusted publisher est
+configuré côté npm pour **chaque paquet** (`pasquelin/plugingsMap3D` → `release.yml`).
+
+> NB (bootstrap) : le **tout premier** publish d'un paquet neuf ne peut pas passer par
+> l'OIDC seul (404 « no permission » : le trusted publisher s'attache à un paquet
+> **existant**). La 0.1.0 a donc été publiée une fois via un `NPM_TOKEN` temporaire, puis on
+> a configuré le trusted publisher et retiré le token. Un nouveau plugin publiable devra
+> refaire ce bootstrap (token le temps du 1ᵉʳ publish, puis OIDC).
 
 ### Versioning — version UNIFIÉE
 
@@ -95,8 +98,8 @@ SemVer en `0.x` (une mineure peut casser l'API — le documenter dans `CHANGELOG
 
 Sur tag `v*.*.*` : garde-fou **tag == version de CHAQUE paquet publié** → `pnpm validater`
 → `pnpm build` → `npm publish --provenance --access public` **par dossier de paquet**
-(`packages/geopf`, `packages/windy`). Auth par `NPM_TOKEN` (bootstrap), **provenance signée
-via OIDC** (`id-token: write`, `npm i -g npm@latest`).
+(`packages/geopf`, `packages/windy`) via **OIDC** (trusted publisher, sans token). Provenance
+signée (`id-token: write`, `npm i -g npm@latest` pour npm ≥ 11.5.1).
 
 ### Règles de bonne version (à ne pas violer)
 

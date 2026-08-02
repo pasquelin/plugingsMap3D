@@ -7,6 +7,13 @@ version unifiée** : un tag `vX.Y.Z` les publie ensemble. `@pasquelin/map3d-plug
 
 ## [Non publié]
 
+### ci : release en OIDC pur
+
+Le trusted publisher npm est configuré pour `@pasquelin/map3d-plugin-geopf` et `-windy` :
+`release.yml` publie désormais **sans `NPM_TOKEN`** (le token n'avait servi qu'au bootstrap
+du tout premier publish 0.1.0, l'OIDC ne pouvant pas créer un paquet neuf). Provenance
+toujours signée via OIDC.
+
 ## [0.1.0] — 2026-08-02
 
 ### feat : chaîne de publication npm (comme map3D)

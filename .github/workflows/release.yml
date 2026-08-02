@@ -7,11 +7,12 @@
 #   git commit -am "chore(release): 0.2.0" && git tag v0.2.0
 #   git push --follow-tags            # → ce workflow publie les 2 paquets
 #
-# Authentification : secret `NPM_TOKEN` (fallback), le temps que les paquets existent sur
-# npm. La PROVENANCE reste signée via OIDC (`id-token: write`). Une fois `@pasquelin/map3d-plugin-*`
-# publiés, on pourra configurer le trusted publisher par paquet et retirer le token :
-# le premier publish d'un paquet NEUF ne peut pas passer par OIDC seul (404 « no permission »).
-# Prérequis : secret `NPM_TOKEN` (avec droit d'écriture sur le scope `@pasquelin`) dans le repo.
+# Authentification : **npm Trusted Publishing (OIDC)** — aucun token. npm échange le jeton
+# OIDC de GitHub (`id-token: write`) contre un jeton de publication éphémère. Le trusted
+# publisher est configuré côté npm pour CHAQUE paquet (`pasquelin/plugingsMap3D` →
+# `release.yml`). La provenance est signée dans la foulée.
+# NB historique : le tout premier publish (0.1.0) a dû passer par un `NPM_TOKEN` — l'OIDC ne
+# peut pas créer un paquet neuf, il s'attache à un paquet existant. Le token n'est plus utile.
 name: Release
 
 on:
@@ -42,8 +43,8 @@ jobs:
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
 
-      # npm récent pour la provenance (signature OIDC de l'attestation) ; Node 22 = npm 10.
-      - name: Mettre npm à jour
+      # OIDC trusted publishing exige npm >= 11.5.1 ; Node 22 embarque npm 10.
+      - name: Mettre npm à jour (requis pour l'OIDC)
         run: npm install -g npm@latest
 
       - name: Installer les dépendances
@@ -68,16 +69,12 @@ jobs:
       - name: Build (dist/ ESM + CJS + types)
         run: pnpm build
 
-      # Auth par NPM_TOKEN (setup-node a écrit le .npmrc lisant NODE_AUTH_TOKEN), provenance
-      # via OIDC. `npm publish` par dossier de paquet (pas `pnpm publish -r`).
+      # OIDC trusted publisher (configuré côté npm) : pas de token. `npm publish` par dossier
+      # de paquet (la provenance et l'OIDC passent par npm, pas par `pnpm publish -r`).
       - name: Publier @pasquelin/map3d-plugin-geopf
         run: npm publish --provenance --access public
         working-directory: packages/geopf
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publier @pasquelin/map3d-plugin-windy
         run: npm publish --provenance --access public
         working-directory: packages/windy
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
