@@ -1,4 +1,4 @@
-# @map3d/plugin-plan-3d
+# @pasquelin/map3d-plugin-plan-3d
 
 > ⚠️ **PLACEHOLDER.** Ce plugin est un gabarit de démonstration pour la voie C (`layer`) du
 > contrat plugin map3D — il n'implémente **aucune** vraie fonctionnalité « Plan 3D ». Le métier
@@ -14,7 +14,7 @@ markers, ou couches de données) — elle démontre l'accès direct à `engine.s
 
 ```tsx
 import { Map } from '@pasquelin/map3d'
-import { plan3d } from '@map3d/plugin-plan-3d'
+import { plan3d } from '@pasquelin/map3d-plugin-plan-3d'
 
 <Map plugins={[plan3d()]} />
 ```
@@ -43,7 +43,7 @@ Le plugin est **désactivé par défaut** : l'utilisateur l'active depuis le hub
 ## Exemple
 
 ```bash
-pnpm --filter @map3d/plugin-plan-3d-example dev
+pnpm --filter @pasquelin/map3d-plugin-plan-3d-example dev
 ```
 
 Nécessite `VITE_CESIUM_ION_TOKEN` (fichier `.env` du package `example/`) pour de vrais tuiles 3D ;

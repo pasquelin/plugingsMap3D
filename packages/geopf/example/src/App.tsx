@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Map, useBuildingEnrichment } from '@pasquelin/map3d'
-import { geopfBatiments } from '@map3d/plugin-geopf'
+import { geopfBatiments } from '@pasquelin/map3d-plugin-geopf'
 
 /**
  * Enrichissement geopf au pick — enfant de <Map> (le hook exige le contexte carte).

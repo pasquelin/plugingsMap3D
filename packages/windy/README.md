@@ -1,4 +1,4 @@
-# @map3d/plugin-windy
+# @pasquelin/map3d-plugin-windy
 
 Webcams publiques **réelles** autour de la vue — voie « markers » du contrat plugin
 (`data.fetch`), zéro enrichissement, zéro couche 3D custom. Interroge la
@@ -10,7 +10,7 @@ en avatar, une infobulle (aperçu + localisation) et un menu (ouvrir / copier le
 
 ```tsx
 import { Map } from '@pasquelin/map3d'
-import { windyWebcams } from '@map3d/plugin-windy'
+import { windyWebcams } from '@pasquelin/map3d-plugin-windy'
 
 <Map plugins={[windyWebcams({ apiKey: import.meta.env.VITE_WINDY_API_KEY })]} />
 ```
@@ -63,7 +63,7 @@ suivi possible côté map3D (champ `data.refresh` dynamique), pas une limitation
 ## Exemple
 
 ```bash
-pnpm --filter @map3d/plugin-windy-example dev
+pnpm --filter @pasquelin/map3d-plugin-windy-example dev
 ```
 
 Nécessite `VITE_WINDY_API_KEY` (fichier `.env` du package `example/`, gitignoré) pour de vraies

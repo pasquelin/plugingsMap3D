@@ -1,4 +1,4 @@
-# @map3d/plugin-geopf
+# @pasquelin/map3d-plugin-geopf
 
 Bâtiments France (BDTOPO) — enrichissement au pick. Au clic sur un bâtiment 3D, interroge le
 service WFS de la Géoplateforme IGN (`BDTOPO_V3:batiment`) et remonte ses attributs officiels
@@ -11,7 +11,7 @@ Voie « enrichir » du contrat plugin — zéro marker, zéro couche 3D : unique
 
 ```tsx
 import { Map } from '@pasquelin/map3d'
-import { geopfBatiments } from '@map3d/plugin-geopf'
+import { geopfBatiments } from '@pasquelin/map3d-plugin-geopf'
 
 <Map plugins={[geopfBatiments()]} />
 ```
@@ -57,7 +57,7 @@ function BuildingInfo() {
 ## Exemple
 
 ```bash
-pnpm --filter @map3d/plugin-geopf-example dev
+pnpm --filter @pasquelin/map3d-plugin-geopf-example dev
 ```
 
 Nécessite `VITE_CESIUM_ION_TOKEN` (fichier `.env` du package `example/`) pour de vrais bâtiments 3D ;

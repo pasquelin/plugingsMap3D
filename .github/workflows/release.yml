@@ -8,10 +8,10 @@
 #   git push --follow-tags            # → ce workflow publie les 2 paquets
 #
 # Authentification : secret `NPM_TOKEN` (fallback), le temps que les paquets existent sur
-# npm. La PROVENANCE reste signée via OIDC (`id-token: write`). Une fois `@map3d/plugin-*`
+# npm. La PROVENANCE reste signée via OIDC (`id-token: write`). Une fois `@pasquelin/map3d-plugin-*`
 # publiés, on pourra configurer le trusted publisher par paquet et retirer le token :
 # le premier publish d'un paquet NEUF ne peut pas passer par OIDC seul (404 « no permission »).
-# Prérequis : org `@map3d` créée sur npmjs + secret `NPM_TOKEN` (automation) dans le repo.
+# Prérequis : secret `NPM_TOKEN` (avec droit d'écriture sur le scope `@pasquelin`) dans le repo.
 name: Release
 
 on:
@@ -70,13 +70,13 @@ jobs:
 
       # Auth par NPM_TOKEN (setup-node a écrit le .npmrc lisant NODE_AUTH_TOKEN), provenance
       # via OIDC. `npm publish` par dossier de paquet (pas `pnpm publish -r`).
-      - name: Publier @map3d/plugin-geopf
+      - name: Publier @pasquelin/map3d-plugin-geopf
         run: npm publish --provenance --access public
         working-directory: packages/geopf
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publier @map3d/plugin-windy
+      - name: Publier @pasquelin/map3d-plugin-windy
         run: npm publish --provenance --access public
         working-directory: packages/windy
         env:

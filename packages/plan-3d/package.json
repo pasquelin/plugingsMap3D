@@ -1,5 +1,5 @@
 {
-  "name": "@map3d/plugin-plan-3d",
+  "name": "@pasquelin/map3d-plugin-plan-3d",
   "version": "0.0.0",
   "private": true,
   "type": "module",

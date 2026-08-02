@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Map } from '@pasquelin/map3d'
-import { windyWebcams } from '@map3d/plugin-windy'
+import { windyWebcams } from '@pasquelin/map3d-plugin-windy'
 
 /** Exemple autonome : la carte + Windy Webcams (clé via VITE_WINDY_API_KEY ; active-le via le hub). */
 export function App() {

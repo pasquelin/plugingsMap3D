@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@map3d/plugin-plan-3d': resolve(__dirname, '../src/index.ts'),
+      '@pasquelin/map3d-plugin-plan-3d': resolve(__dirname, '../src/index.ts'),
       'three/addons': resolve(__dirname, '../../../node_modules/three/examples/jsm'),
     },
   },

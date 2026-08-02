@@ -4,7 +4,8 @@ Guide pour Claude Code (claude.ai/code) sur ce dépôt.
 
 ## Nature du projet
 
-**Monorepo pnpm des plugins officiels de map3D** — publiés sous le scope **`@map3d/*`**.
+**Monorepo pnpm des plugins officiels de map3D** — publiés sous le scope **`@pasquelin`**
+(paquets `@pasquelin/map3d-plugin-*`).
 **1 plugin = 1 package** (`packages/<nom>/`) + son exemple (`packages/<nom>/example/`).
 Le code (commentaires, JSDoc, docs) est **en français** : s'y conformer.
 
@@ -19,10 +20,10 @@ Gestionnaire de paquets : **pnpm** (`pnpm-workspace.yaml` → `packages/*`, `pac
 
 | Package | Publié ? | Rôle |
 |---|---|---|
-| `@map3d/plugin-geopf` | **oui** | bâtiments BDTOPO/IGN au pick (voie `enrich`) |
-| `@map3d/plugin-windy` | **oui** | webcams Windy autour de la vue (voie `markers`) |
-| `@map3d/plugin-plan-3d` | **non** (`private`) | **placeholder** de la voie `layer` — pas de métier réel |
-| `@map3d/plugin-template` | **non** (`private`) | gabarit pour créer un plugin |
+| `@pasquelin/map3d-plugin-geopf` | **oui** | bâtiments BDTOPO/IGN au pick (voie `enrich`) |
+| `@pasquelin/map3d-plugin-windy` | **oui** | webcams Windy autour de la vue (voie `markers`) |
+| `@pasquelin/map3d-plugin-plan-3d` | **non** (`private`) | **placeholder** de la voie `layer` — pas de métier réel |
+| `@pasquelin/map3d-plugin-template` | **non** (`private`) | gabarit pour créer un plugin |
 
 Les deux paquets publiables partagent **une version unifiée** (cf. release).
 
@@ -40,7 +41,7 @@ pnpm validater        # typecheck + lint + format:check + test — le garde-fou 
 pnpm version:plugins X.Y.Z   # bump UNIFIÉ (racine + geopf + windy)
 ```
 
-Exemple d'un plugin : `pnpm --filter @map3d/plugin-<nom>-example dev`. Les exemples
+Exemple d'un plugin : `pnpm --filter @pasquelin/map3d-plugin-<nom>-example dev`. Les exemples
 résolvent `@pasquelin/map3d` via node_modules (la version npm) — **plus besoin** du
 sibling `../map3D` buildé pour développer/typechecker les plugins.
 
@@ -66,7 +67,7 @@ publication** des paquets publiables. La **provenance** est signée via **OIDC**
 
 Auth : **secret `NPM_TOKEN`** (bootstrap). Le premier publish d'un paquet **neuf** ne peut
 pas passer par l'OIDC seul (il renvoie 404 « no permission » : le trusted publisher
-s'attache à un paquet **existant**). Une fois `@map3d/plugin-*` publiés une première fois,
+s'attache à un paquet **existant**). Une fois `@pasquelin/map3d-plugin-*` publiés une première fois,
 configurer le **trusted publisher** par paquet côté npm (repo `pasquelin/plugingsMap3D` →
 `release.yml`) et retirer le token pour passer en OIDC pur.
 
@@ -88,14 +89,14 @@ SemVer en `0.x` (une mineure peut casser l'API — le documenter dans `CHANGELOG
    git tag vX.Y.Z
    ```
 4. **Publier** : `git push --follow-tags` → le workflow publie.
-5. **Vérifier** : `npm view @map3d/plugin-geopf version` (idem windy).
+5. **Vérifier** : `npm view @pasquelin/map3d-plugin-geopf version` (idem windy).
 
 ### Ce que fait `.github/workflows/release.yml`
 
 Sur tag `v*.*.*` : garde-fou **tag == version de CHAQUE paquet publié** → `pnpm validater`
 → `pnpm build` → `npm publish --provenance --access public` **par dossier de paquet**
-(`packages/geopf`, `packages/windy`) via OIDC. `npm i -g npm@latest` (OIDC ≥ 11.5.1),
-`id-token: write`.
+(`packages/geopf`, `packages/windy`). Auth par `NPM_TOKEN` (bootstrap), **provenance signée
+via OIDC** (`id-token: write`, `npm i -g npm@latest`).
 
 ### Règles de bonne version (à ne pas violer)
 
@@ -132,7 +133,7 @@ git worktree remove ../plugingsMap3D-feat-x
 ## Ajouter un plugin
 
 Copier `packages/plugin-template` (structure + `vite.config.ts` + `tsconfig.json`),
-renommer en `@map3d/plugin-<nom>`. S'il doit être publié : retirer `private`, compléter le
+renommer en `@pasquelin/map3d-plugin-<nom>`. S'il doit être publié : retirer `private`, compléter le
 packaging (cf. `geopf`/`windy`), ajouter son `LICENSE`, l'inclure dans la version unifiée
 et dans les étapes `publish` de `release.yml`. Sinon, le laisser `private`.
 

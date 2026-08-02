@@ -1,5 +1,5 @@
 {
-  "name": "@map3d/plugin-template",
+  "name": "@pasquelin/map3d-plugin-template",
   "version": "0.0.0",
   "private": true,
   "type": "module",

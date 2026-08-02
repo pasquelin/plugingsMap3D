@@ -1,5 +1,5 @@
 {
-  "name": "@map3d/plugin-geopf",
+  "name": "@pasquelin/map3d-plugin-geopf",
   "version": "0.1.0",
   "description": "Plugin map3D — enrichit les bâtiments 3D au clic avec les attributs BDTOPO de la Géoplateforme IGN (WFS), via useBuildingEnrichment().",
   "type": "module",

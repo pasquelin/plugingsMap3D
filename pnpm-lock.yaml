@@ -73,7 +73,7 @@ importers:
 
   packages/geopf/example:
     dependencies:
-      '@map3d/plugin-geopf':
+      '@pasquelin/map3d-plugin-geopf':
         specifier: workspace:*
         version: link:..
 
@@ -81,7 +81,7 @@ importers:
 
   packages/plan-3d/example:
     dependencies:
-      '@map3d/plugin-plan-3d':
+      '@pasquelin/map3d-plugin-plan-3d':
         specifier: workspace:*
         version: link:..
 
@@ -89,7 +89,7 @@ importers:
 
   packages/plugin-template/example:
     dependencies:
-      '@map3d/plugin-template':
+      '@pasquelin/map3d-plugin-template':
         specifier: workspace:*
         version: link:..
 
@@ -97,7 +97,7 @@ importers:
 
   packages/windy/example:
     dependencies:
-      '@map3d/plugin-windy':
+      '@pasquelin/map3d-plugin-windy':
         specifier: workspace:*
         version: link:..
 
