@@ -7,9 +7,11 @@ version unifiée** : un tag `vX.Y.Z` les publie ensemble. `@map3d/plugin-plan-3d
 
 ## [Non publié]
 
+## [0.1.0] — 2026-08-02
+
 ### feat : chaîne de publication npm (comme map3D)
 
-Premier packaging publiable des plugins :
+Première version publiée de `@map3d/plugin-geopf` et `@map3d/plugin-windy`. Packaging :
 
 - Correction de la dépendance à la lib : import et peerDependency `@pasquelin/map3d ^0.2.0`
   (au lieu du nom `map3d` en `file:`, qui excluait même la 0.2.0 publiée).
