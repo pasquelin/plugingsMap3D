@@ -61,9 +61,14 @@ licence **MIT**.
 ## Mise en production (release npm)
 
 Publication **automatique** par GitHub Actions : **pousser un tag `vX.Y.Z` déclenche la
-publication** des paquets publiables. Aucun token — auth par **npm Trusted Publishing
-(OIDC)** (trusted publisher configuré côté npm : scope `@map3d`,
-`pasquelin/plugingsMap3D` → `release.yml`).
+publication** des paquets publiables. La **provenance** est signée via **OIDC**
+(`id-token: write`).
+
+Auth : **secret `NPM_TOKEN`** (bootstrap). Le premier publish d'un paquet **neuf** ne peut
+pas passer par l'OIDC seul (il renvoie 404 « no permission » : le trusted publisher
+s'attache à un paquet **existant**). Une fois `@map3d/plugin-*` publiés une première fois,
+configurer le **trusted publisher** par paquet côté npm (repo `pasquelin/plugingsMap3D` →
+`release.yml`) et retirer le token pour passer en OIDC pur.
 
 ### Versioning — version UNIFIÉE
 

@@ -7,8 +7,11 @@
 #   git commit -am "chore(release): 0.2.0" && git tag v0.2.0
 #   git push --follow-tags            # → ce workflow publie les 2 paquets
 #
-# Authentification : npm Trusted Publishing (OIDC) — aucun token. Le trusted publisher
-# doit être configuré côté npm : scope @map3d → pasquelin/plugingsMap3D → release.yml.
+# Authentification : secret `NPM_TOKEN` (fallback), le temps que les paquets existent sur
+# npm. La PROVENANCE reste signée via OIDC (`id-token: write`). Une fois `@map3d/plugin-*`
+# publiés, on pourra configurer le trusted publisher par paquet et retirer le token :
+# le premier publish d'un paquet NEUF ne peut pas passer par OIDC seul (404 « no permission »).
+# Prérequis : org `@map3d` créée sur npmjs + secret `NPM_TOKEN` (automation) dans le repo.
 name: Release
 
 on:
@@ -39,8 +42,8 @@ jobs:
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
 
-      # OIDC trusted publishing exige npm >= 11.5.1 ; Node 22 embarque npm 10.
-      - name: Mettre npm à jour (requis pour l'OIDC)
+      # npm récent pour la provenance (signature OIDC de l'attestation) ; Node 22 = npm 10.
+      - name: Mettre npm à jour
         run: npm install -g npm@latest
 
       - name: Installer les dépendances
@@ -65,12 +68,16 @@ jobs:
       - name: Build (dist/ ESM + CJS + types)
         run: pnpm build
 
-      # Sans token : l'OIDC trusted publisher authentifie. `npm publish` par dossier de
-      # paquet (la provenance et l'OIDC passent par npm, pas par `pnpm publish -r`).
+      # Auth par NPM_TOKEN (setup-node a écrit le .npmrc lisant NODE_AUTH_TOKEN), provenance
+      # via OIDC. `npm publish` par dossier de paquet (pas `pnpm publish -r`).
       - name: Publier @map3d/plugin-geopf
         run: npm publish --provenance --access public
         working-directory: packages/geopf
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publier @map3d/plugin-windy
         run: npm publish --provenance --access public
         working-directory: packages/windy
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
