@@ -66,7 +66,7 @@ publication** des paquets publiables. La **provenance** est signée via **OIDC**
 (`id-token: write`).
 
 Auth : **npm Trusted Publishing (OIDC)** — **aucun token**. Le trusted publisher est
-configuré côté npm pour **chaque paquet** (`pasquelin/map3d-plugins` → `release.yml`).
+configuré côté npm pour **chaque paquet** (`pasquelin/plugingsMap3D` → `release.yml`).
 
 > NB (bootstrap) : le **tout premier** publish d'un paquet neuf ne peut pas passer par
 > l'OIDC seul (404 « no permission » : le trusted publisher s'attache à un paquet
@@ -128,9 +128,9 @@ sessions/agents dans le même working tree (collisions d'index — cf. map3D). `
 chemin explicite, pas `git add -A` si l'index est partagé.
 
 ```bash
-git worktree add ../map3d-plugins-feat-x -b feat/x develop
+git worktree add ../plugingsMap3D-feat-x -b feat/x develop
 # … commits sur feat/x … → PR vers develop
-git worktree remove ../map3d-plugins-feat-x
+git worktree remove ../plugingsMap3D-feat-x
 ```
 
 ## Ajouter un plugin

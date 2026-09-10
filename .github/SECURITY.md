@@ -18,7 +18,7 @@ Vérifier la version courante : `npm view @pasquelin/map3d-plugin-geopf version`
 **N'ouvrez pas d'issue publique** pour une vulnérabilité.
 
 1. De préférence, utilisez le
-   [signalement privé de GitHub](https://github.com/pasquelin/map3d-plugins/security/advisories/new)
+   [signalement privé de GitHub](https://github.com/pasquelin/plugingsMap3D/security/advisories/new)
    (onglet *Security* → *Report a vulnerability*).
 2. À défaut, écrivez à **alban.pasquelin@gmail.com** avec `[SECURITY]` en objet.
 
