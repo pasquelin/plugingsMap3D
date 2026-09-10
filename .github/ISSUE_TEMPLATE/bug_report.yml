@@ -1,0 +1,73 @@
+name: 🐛 Bug
+description: Signaler un comportement incorrect d'un plugin
+labels: ["bug", "à trier"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci pour le signalement ! Pour une **faille de sécurité**, n'ouvrez pas d'issue publique :
+        voir [SECURITY.md](https://github.com/pasquelin/plugingsMap3D/blob/main/.github/SECURITY.md).
+
+  - type: dropdown
+    id: package
+    attributes:
+      label: Plugin concerné
+      options:
+        - "@pasquelin/map3d-plugin-geopf"
+        - "@pasquelin/map3d-plugin-windy"
+        - "@pasquelin/map3d-plugin-plan-3d"
+        - "@pasquelin/map3d-plugin-template"
+        - Monorepo (build, CI, outillage)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Ce qui se passe
+      description: Décrivez le comportement observé, et ce que vous attendiez à la place.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Étapes de reproduction
+      description: |
+        Idéalement à partir de l'exemple du plugin :
+        `pnpm --filter @pasquelin/map3d-plugin-<nom>-example dev`
+      placeholder: |
+        1. Lancer l'exemple …
+        2. Activer le plugin depuis le hub …
+        3. Cliquer sur …
+        4. Observer …
+    validations:
+      required: true
+
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: Sortie de `npm ls @pasquelin/map3d @pasquelin/map3d-plugin-<nom> react three`, plus Node et le navigateur.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console / réseau
+      description: Erreurs de la console, et la réponse du service tiers (WFS Géoplateforme, API Windy) si l'appel est en cause.
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Vérifications
+      options:
+        - label: J'ai cherché une issue existante sur le même sujet.
+          required: true
+        - label: Je suis sur la dernière version publiée du plugin.
+          required: true
+        - label: Mon rapport ne contient aucune clé d'API ni secret.
+          required: true

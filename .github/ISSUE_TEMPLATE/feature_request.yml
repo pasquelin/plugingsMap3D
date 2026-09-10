@@ -1,0 +1,45 @@
+name: 💡 Évolution
+description: Proposer une amélioration d'un plugin existant
+labels: ["enhancement", "à trier"]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Plugin concerné
+      options:
+        - "@pasquelin/map3d-plugin-geopf"
+        - "@pasquelin/map3d-plugin-windy"
+        - "@pasquelin/map3d-plugin-plan-3d"
+        - "@pasquelin/map3d-plugin-template"
+        - Monorepo (build, CI, outillage)
+    validations:
+      required: true
+
+  - type: textarea
+    id: probleme
+    attributes:
+      label: Le problème
+      description: Quel besoin réel n'est pas couvert aujourd'hui ? Décrivez l'usage, pas la solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: La solution envisagée
+      description: API souhaitée, option de configuration, exemple de code.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives et contournements
+      description: Ce que vous faites en attendant, et pourquoi ça ne suffit pas.
+
+  - type: checkboxes
+    id: rupture
+    attributes:
+      label: Compatibilité
+      options:
+        - label: Cette évolution casserait l'API publique existante.

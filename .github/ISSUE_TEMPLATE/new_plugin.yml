@@ -1,0 +1,55 @@
+name: 🧩 Nouveau plugin
+description: Proposer un nouveau plugin officiel map3D
+labels: ["nouveau plugin", "à trier"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Avant de proposer, lire le
+        [contrat de plugin](https://github.com/pasquelin/map3D/blob/main/docs/fr/PLUGINS.md) et
+        [CONTRIBUTING.md](https://github.com/pasquelin/plugingsMap3D/blob/main/.github/CONTRIBUTING.md).
+        Un plugin **tiers** n'a pas besoin de vivre ici : ce gabarit sert aux plugins **officiels**.
+
+  - type: input
+    id: nom
+    attributes:
+      label: Nom proposé
+      placeholder: "@pasquelin/map3d-plugin-…"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: voie
+    attributes:
+      label: Voie du contrat
+      options:
+        - "enrich — complète un objet après une interaction"
+        - "markers — pose des markers depuis une source distante"
+        - "layer — pose sa propre 3D dans engine.scene"
+    validations:
+      required: true
+
+  - type: textarea
+    id: valeur
+    attributes:
+      label: Ce qu'il apporte
+      description: Quelle donnée, pour quel usage, pour qui ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Source de données
+      description: Service interrogé, licence des données, conditions d'utilisation, quotas, et si une clé d'API est nécessaire.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Faisabilité
+      options:
+        - label: La licence de la source autorise cet usage.
+        - label: Le plugin tient dans une seule voie du contrat.
+        - label: Je suis prêt·e à en assurer la maintenance.
