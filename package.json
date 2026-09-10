@@ -7,7 +7,7 @@
   "author": "Alban Pasquelin <alban.pasquelin@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pasquelin/map3d-plugins.git"
+    "url": "git+https://github.com/pasquelin/plugingsMap3D.git"
   },
   "packageManager": "pnpm@9.0.0",
   "scripts": {

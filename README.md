@@ -1,10 +1,10 @@
 <div align="center">
 
-### map3d-plugins — the official plugins for [map3D](https://github.com/pasquelin/map3D)
+### plugingsMap3D — the official plugins for [map3D](https://github.com/pasquelin/map3D)
 
 *Real data poured into a React 3D map: French BDTOPO building attributes on pick, live public webcams around the view.*
 
-[![CI](https://github.com/pasquelin/map3d-plugins/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pasquelin/map3d-plugins/actions/workflows/ci.yml)
+[![CI](https://github.com/pasquelin/plugingsMap3D/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pasquelin/plugingsMap3D/actions/workflows/ci.yml)
 [![npm geopf](https://img.shields.io/npm/v/@pasquelin/map3d-plugin-geopf?label=geopf&logo=npm&color=cb3837)](https://www.npmjs.com/package/@pasquelin/map3d-plugin-geopf)
 [![npm windy](https://img.shields.io/npm/v/@pasquelin/map3d-plugin-windy?label=windy&logo=npm&color=cb3837)](https://www.npmjs.com/package/@pasquelin/map3d-plugin-windy)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)

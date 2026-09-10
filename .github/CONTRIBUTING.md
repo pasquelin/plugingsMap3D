@@ -1,4 +1,4 @@
-# Contribuer à map3d-plugins
+# Contribuer à plugingsMap3D
 
 Merci de l'intérêt porté aux plugins officiels de [map3D](https://github.com/pasquelin/map3D) !
 Ce document décrit le strict nécessaire pour qu'une contribution soit fusionnable.
@@ -37,9 +37,9 @@ Une feature = une branche = un **`git worktree` isolé**. Jamais deux sessions d
 working tree : les index se marchent dessus.
 
 ```bash
-git worktree add ../map3d-plugins-feat-x -b feat/x develop
+git worktree add ../plugingsMap3D-feat-x -b feat/x develop
 # … commits sur feat/x … → PR vers develop
-git worktree remove ../map3d-plugins-feat-x
+git worktree remove ../plugingsMap3D-feat-x
 ```
 
 Ajoute les fichiers **par chemin explicite** (`git add packages/windy/src/index.ts`), pas `git add -A`.
@@ -92,5 +92,5 @@ Portées usuelles : `geopf`, `windy`, `plan-3d`, `template`, `ci`, `docs`, `buil
 
 ## Signaler un bug ou proposer une idée
 
-Passe par les [issues](https://github.com/pasquelin/map3d-plugins/issues) et leurs gabarits.
+Passe par les [issues](https://github.com/pasquelin/plugingsMap3D/issues) et leurs gabarits.
 Pour une **faille de sécurité**, ne pas ouvrir d'issue publique : voir [SECURITY.md](SECURITY.md).

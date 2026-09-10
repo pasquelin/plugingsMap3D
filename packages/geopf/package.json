@@ -7,11 +7,11 @@
   "author": "Alban Pasquelin <alban.pasquelin@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pasquelin/map3d-plugins.git",
+    "url": "git+https://github.com/pasquelin/plugingsMap3D.git",
     "directory": "packages/geopf"
   },
-  "homepage": "https://github.com/pasquelin/map3d-plugins/tree/main/packages/geopf#readme",
-  "bugs": "https://github.com/pasquelin/map3d-plugins/issues",
+  "homepage": "https://github.com/pasquelin/plugingsMap3D/tree/main/packages/geopf#readme",
+  "bugs": "https://github.com/pasquelin/plugingsMap3D/issues",
   "publishConfig": {
     "access": "public",
     "provenance": true

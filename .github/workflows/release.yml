@@ -9,7 +9,7 @@
 #
 # Authentification : **npm Trusted Publishing (OIDC)** — aucun token. npm échange le jeton
 # OIDC de GitHub (`id-token: write`) contre un jeton de publication éphémère. Le trusted
-# publisher est configuré côté npm pour CHAQUE paquet (`pasquelin/map3d-plugins` →
+# publisher est configuré côté npm pour CHAQUE paquet (`pasquelin/plugingsMap3D` →
 # `release.yml`). La provenance est signée dans la foulée.
 # NB historique : le tout premier publish (0.1.0) a dû passer par un `NPM_TOKEN` — l'OIDC ne
 # peut pas créer un paquet neuf, il s'attache à un paquet existant. Le token n'est plus utile.
