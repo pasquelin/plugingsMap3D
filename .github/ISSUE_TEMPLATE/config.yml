@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Contrat de plugin map3D
+    url: https://github.com/pasquelin/map3D/blob/main/docs/fr/PLUGINS.md
+    about: Comment écrire un plugin — voies enrich / markers / layer, definePlugin.
+  - name: 🗺️ Question sur la lib map3D
+    url: https://github.com/pasquelin/map3D/issues
+    about: Le bug concerne la carte elle-même (caméra, tuiles, markers, thème) et non un plugin.
+  - name: 🔒 Faille de sécurité
+    url: https://github.com/pasquelin/plugingsMap3D/security/advisories/new
+    about: Signalement privé — n'ouvrez jamais d'issue publique pour une vulnérabilité.
