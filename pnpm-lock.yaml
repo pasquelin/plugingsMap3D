@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       3d-tiles-renderer:
-        specifier: ^0.5.0
-        version: 0.5.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)
+        specifier: ^0.5.2
+        version: 0.5.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
@@ -103,8 +103,8 @@ importers:
 
 packages:
 
-  3d-tiles-renderer@0.5.0:
-    resolution: {integrity: sha512-r+6BdOBC7nwGZDJFo2brOhBiF/M/WbSqEsOAYwOB3jTK4dC50ccDQLu3igFovhRsB4SdMpGhdO7NK5g53BfETA==}
+  3d-tiles-renderer@0.5.2:
+    resolution: {integrity: sha512-mpl6Gqvg6ZjkxZW/TQZ9SW91gjWRRDuscuU3D2WWzw1ETFct8ijVdnXJs400sDkkIXpcmrEoHlpN+r9NdROd+w==}
     peerDependencies:
       '@babylonjs/core': '>=8.0.0'
       '@babylonjs/loaders': '>=8.0.0'
@@ -1008,6 +1008,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1337,8 +1338,8 @@ packages:
   pkg-types@2.3.1:
     resolution: {integrity: sha512-y+ichcgc2LrADuhLNAx8DFjVfgz91pRxfZdI3UDhxHvcVEZsenLO+7XaU5vOp0u/7V/wZ+plyuQxtrDlZJ+yeg==}
 
-  pmtiles@4.4.1:
-    resolution: {integrity: sha512-5oTeQc/yX/ft1evbpIlnoCZugQuug/iYIAj/ZTqIqzdGek4uZEho99En890EE6NOSI3JTI3IG8R7r8+SltphxA==}
+  pmtiles@4.5.0:
+    resolution: {integrity: sha512-CBeD4SoUluFziGdy/8k7FOjQxQy486n+929W/tWophauvMICpkZ26vGBWhDt/6b1FZQWNaf4jFdT/5+q0Wii5w==}
 
   postcss@8.5.25:
     resolution: {integrity: sha512-DTPx3RWSSnWyzLxQnlH0rJP+EW5ekl16ZU4/psbIhA0e53kJfdgaN5vKM+xP7yJtXVu+nfdVFmlgFDEKAe4Pyw==}
@@ -1641,11 +1642,11 @@ packages:
 
 snapshots:
 
-  3d-tiles-renderer@0.5.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0):
+  3d-tiles-renderer@0.5.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0):
     dependencies:
       '@mapbox/vector-tile': 2.0.5
       pbf: 4.0.2
-      pmtiles: 4.4.1
+      pmtiles: 4.5.0
     optionalDependencies:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
@@ -1983,7 +1984,7 @@ snapshots:
 
   '@pasquelin/map3d@0.2.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)':
     dependencies:
-      3d-tiles-renderer: 0.5.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)
+      3d-tiles-renderer: 0.5.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)
       '@armyc2.c5isr.renderer/mil-sym-ts-web': 2.9.2
       '@mapbox/vector-tile': 3.0.0
       '@mdi/js': 7.4.47
@@ -2859,7 +2860,7 @@ snapshots:
       exsolve: 1.1.1
       pathe: 2.0.3
 
-  pmtiles@4.4.1:
+  pmtiles@4.5.0:
     dependencies:
       fflate: 0.8.3
 
