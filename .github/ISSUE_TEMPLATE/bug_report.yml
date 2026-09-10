@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Merci pour le signalement ! Pour une **faille de sécurité**, n'ouvrez pas d'issue publique :
-        voir [SECURITY.md](https://github.com/pasquelin/plugingsMap3D/blob/main/.github/SECURITY.md).
+        voir [SECURITY.md](https://github.com/pasquelin/map3d-plugins/blob/main/.github/SECURITY.md).
 
   - type: dropdown
     id: package

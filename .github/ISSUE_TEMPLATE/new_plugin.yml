@@ -7,7 +7,7 @@ body:
       value: |
         Avant de proposer, lire le
         [contrat de plugin](https://github.com/pasquelin/map3D/blob/main/docs/fr/PLUGINS.md) et
-        [CONTRIBUTING.md](https://github.com/pasquelin/plugingsMap3D/blob/main/.github/CONTRIBUTING.md).
+        [CONTRIBUTING.md](https://github.com/pasquelin/map3d-plugins/blob/main/.github/CONTRIBUTING.md).
         Un plugin **tiers** n'a pas besoin de vivre ici : ce gabarit sert aux plugins **officiels**.
 
   - type: input
