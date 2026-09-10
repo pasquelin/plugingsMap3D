@@ -1,8 +1,8 @@
 <div align="center">
 
-### map3d-plugins — les plugins officiels de [map3D](https://github.com/pasquelin/map3D)
+### map3d-plugins — the official plugins for [map3D](https://github.com/pasquelin/map3D)
 
-*Official plugins for map3D — real data poured into a React 3D map: French BDTOPO buildings on pick, live public webcams around the view.*
+*Real data poured into a React 3D map: French BDTOPO building attributes on pick, live public webcams around the view.*
 
 [![CI](https://github.com/pasquelin/map3d-plugins/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pasquelin/map3d-plugins/actions/workflows/ci.yml)
 [![npm geopf](https://img.shields.io/npm/v/@pasquelin/map3d-plugin-geopf?label=geopf&logo=npm&color=cb3837)](https://www.npmjs.com/package/@pasquelin/map3d-plugin-geopf)
@@ -12,52 +12,52 @@
 [![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1e6fbf)](LICENSE)
 
-**[Démo live map3D ↗](https://pasquelin.github.io/map3D/)** · **[Lib map3D ↗](https://github.com/pasquelin/map3D)** · **[Contrat plugin 🇫🇷](https://github.com/pasquelin/map3D/blob/main/docs/fr/PLUGINS.md)** · **[Plugin API 🇬🇧](https://github.com/pasquelin/map3D/blob/main/docs/en/PLUGINS.md)** · **[Changelog](CHANGELOG.md)**
+**[Live demo ↗](https://pasquelin.github.io/map3D/)** · **[map3D library ↗](https://github.com/pasquelin/map3D)** · **[Plugin API 🇬🇧](https://github.com/pasquelin/map3D/blob/main/docs/en/PLUGINS.md)** · **[Documentation 🇫🇷](docs/fr/README.md)** · **[Changelog](CHANGELOG.md)**
 
 </div>
 
 ---
 
-## Pourquoi ce dépôt
+## Why this repository
 
-[map3D](https://github.com/pasquelin/map3D) est une lib de cartographie 3D temps réel pour React.
-Elle ne connaît **aucune** source de données métier : c'est le rôle des plugins. Ce monorepo
-héberge les plugins **officiels**, publiés sous le scope `@pasquelin` — **1 plugin = 1 package**
-(`packages/<nom>/`) **+ son exemple exécutable** (`packages/<nom>/example/`).
+[map3D](https://github.com/pasquelin/map3D) is a real-time 3D mapping library for React.
+It knows about **no** business data source — that is what plugins are for. This monorepo holds the
+**official** ones, published under the `@pasquelin` scope: **1 plugin = 1 package**
+(`packages/<name>/`) **+ its runnable example** (`packages/<name>/example/`).
 
-Un plugin se branche sur l'une des trois **voies** du contrat `definePlugin` :
+A plugin plugs into one of the three **lanes** of the `definePlugin` contract:
 
-| Voie | Ce qu'elle fait | Exemple ici |
+| Lane | What it does | Example here |
 |---|---|---|
-| `enrich` | complète un objet de la carte après une interaction (pick de bâtiment) | `geopf` |
-| `markers` | fournit des markers DOM à partir d'une source distante, rafraîchis sur la vue | `windy` |
-| `layer` | accède directement à `engine.scene` / `engine.projection` pour poser sa 3D | `plan-3d` |
+| `enrich` | completes a map object after an interaction (building pick) | `geopf` |
+| `markers` | supplies DOM markers from a remote source, refreshed on view change | `windy` |
+| `layer` | reaches `engine.scene` / `engine.projection` directly to draw its own 3D | `plan-3d` |
 
-## Les plugins
+## The plugins
 
-| Package | Voie | Rôle | npm |
+| Package | Lane | Role | npm |
 |---|---|---|---|
-| [`@pasquelin/map3d-plugin-geopf`](packages/geopf) | `enrich` | Bâtiments France : au clic sur un bâtiment 3D, remonte les attributs officiels **BDTOPO** de la **Géoplateforme IGN** (nature, usage, hauteur, étages, matériaux…) via `useBuildingEnrichment()`. Le pick reste instantané, l'enrichissement se fait en tâche de fond. | [![npm](https://img.shields.io/npm/v/@pasquelin/map3d-plugin-geopf?color=cb3837&label=)](https://www.npmjs.com/package/@pasquelin/map3d-plugin-geopf) |
-| [`@pasquelin/map3d-plugin-windy`](packages/windy) | `markers` | Webcams publiques réelles autour de la vue courante ([Windy Webcams API v3](https://api.windy.com/webcams)) : un marker par webcam, vignette en avatar, infobulle d'aperçu et menu (ouvrir / copier le lien). | [![npm](https://img.shields.io/npm/v/@pasquelin/map3d-plugin-windy?color=cb3837&label=)](https://www.npmjs.com/package/@pasquelin/map3d-plugin-windy) |
-| [`@pasquelin/map3d-plugin-plan-3d`](packages/plan-3d) | `layer` | **Placeholder** de la voie `layer` : dépose un volume repère reprojeté chaque frame. Démontre le contrat, pas un produit. | privé |
-| [`@pasquelin/map3d-plugin-template`](packages/plugin-template) | — | **Gabarit** à copier pour créer son propre plugin. | privé |
+| [`@pasquelin/map3d-plugin-geopf`](packages/geopf) | `enrich` | French buildings: clicking a 3D building resolves its official **BDTOPO** attributes from the **IGN Géoplateforme** (nature, use, height, floors, materials…) through `useBuildingEnrichment()`. The pick stays instant; enrichment runs in the background. | [![npm](https://img.shields.io/npm/v/@pasquelin/map3d-plugin-geopf?color=cb3837&label=)](https://www.npmjs.com/package/@pasquelin/map3d-plugin-geopf) |
+| [`@pasquelin/map3d-plugin-windy`](packages/windy) | `markers` | Real public webcams around the current view ([Windy Webcams API v3](https://api.windy.com/webcams)): one marker per webcam, thumbnail as avatar, preview tooltip and a menu (open / copy link). | [![npm](https://img.shields.io/npm/v/@pasquelin/map3d-plugin-windy?color=cb3837&label=)](https://www.npmjs.com/package/@pasquelin/map3d-plugin-windy) |
+| [`@pasquelin/map3d-plugin-plan-3d`](packages/plan-3d) | `layer` | **Placeholder** for the `layer` lane: drops a reference volume, reprojected every frame. It demonstrates the contract, it is not a product. | private |
+| [`@pasquelin/map3d-plugin-template`](packages/plugin-template) | — | **Starter** to copy when writing your own plugin. | private |
 
-Les deux paquets publiables partagent une **version unifiée** : un tag `vX.Y.Z` les publie ensemble.
+The two publishable packages share a **single version**: one `vX.Y.Z` tag publishes them together.
 
 ## Installation
 
 ```bash
 npm i @pasquelin/map3d @pasquelin/map3d-plugin-geopf
-# ou : pnpm add … / yarn add …
+# or: pnpm add … / yarn add …
 ```
 
-`react`, `react-dom` (19), `three` (≥ 0.169) et `@pasquelin/map3d` (^0.2.0) sont des
-**peerDependencies** — jamais bundlées par les plugins.
+`react`, `react-dom` (19), `three` (≥ 0.169) and `@pasquelin/map3d` (^0.2.0) are
+**peerDependencies** — never bundled by the plugins.
 
-## Démarrage rapide
+## Quick start
 
-Un plugin se passe à `<Map>` ; il est **désactivé par défaut** et s'active depuis le hub des
-plugins (menu Réglages) de map3D.
+A plugin is passed to `<Map>`; it is **disabled by default** and switched on from map3D's plugin
+hub (Settings menu).
 
 ```tsx
 import { Map } from '@pasquelin/map3d'
@@ -67,7 +67,7 @@ import { windyWebcams } from '@pasquelin/map3d-plugin-windy'
 <Map plugins={[geopfBatiments(), windyWebcams({ apiKey: import.meta.env.VITE_WINDY_API_KEY })]} />
 ```
 
-Lire l'enrichissement `geopf` depuis un enfant de `<Map>` :
+Reading the `geopf` enrichment from a child of `<Map>`:
 
 ```tsx
 import { useBuildingEnrichment } from '@pasquelin/map3d'
@@ -78,79 +78,55 @@ function BuildingInfo() {
 }
 ```
 
-Chaque package a son README détaillé (options, sécurité de la clé API, limites) et son exemple :
+Every package has its own detailed README (options, API key safety, limits) and its example:
 
 ```bash
 pnpm --filter @pasquelin/map3d-plugin-geopf-example dev
 pnpm --filter @pasquelin/map3d-plugin-windy-example dev
 ```
 
-## Créer son plugin
+## Writing your own plugin
 
 ```bash
-cp -r packages/plugin-template packages/mon-plugin
-# renommer `name` et `meta.id`, ajuster `config` et la voie utilisée
+cp -r packages/plugin-template packages/my-plugin
+# rename `name` and `meta.id`, adjust `config` and the lane it uses
 pnpm install && pnpm validater
 ```
 
-Le [contrat de plugin](https://github.com/pasquelin/map3D/blob/main/docs/fr/PLUGINS.md) (`definePlugin`,
-voies `enrich` / `markers` / `layer`) est documenté côté map3D. Pour proposer un plugin officiel
-ici, voir [CONTRIBUTING.md](.github/CONTRIBUTING.md).
+The [plugin contract](https://github.com/pasquelin/map3D/blob/main/docs/en/PLUGINS.md)
+(`definePlugin`, the `enrich` / `markers` / `layer` lanes) is documented on the map3D side. To
+propose an official plugin here, see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
-## Développement
+## Development
 
-Monorepo **pnpm** (Node 22). Prérequis : `pnpm install`.
+**pnpm** monorepo (Node 22). Prerequisite: `pnpm install`.
 
-| Commande | Effet |
+| Command | Effect |
 |---|---|
-| `pnpm build` | build lib de chaque package (`dist/` : ESM + CJS + `.d.ts`) |
-| `pnpm typecheck` | `tsc --noEmit` par package |
-| `pnpm test` | Vitest (tests colocalisés `*.test.ts`) |
+| `pnpm build` | library build for each package (`dist/`: ESM + CJS + `.d.ts`) |
+| `pnpm typecheck` | `tsc --noEmit` per package |
+| `pnpm test` | Vitest (colocated `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
-| **`pnpm validater`** | typecheck + lint + format:check + test — **le garde-fou complet**, rejoué en CI |
-| `pnpm version:plugins X.Y.Z` | bump unifié (racine + `geopf` + `windy`) |
+| **`pnpm validater`** | typecheck + lint + format:check + test — **the full gate**, replayed in CI |
+| `pnpm version:plugins X.Y.Z` | unified bump (root + `geopf` + `windy`) |
 
-Le code, les commentaires et la documentation sont **en français**. `any` est interdit
-(`strict` + `noUncheckedIndexedAccess`), `type` plutôt que `interface`.
+Source, comments and internal documentation are written **in French**. `any` is forbidden
+(`strict` + `noUncheckedIndexedAccess`), `type` rather than `interface`.
 
-## Publication
+## Publishing
 
-Publication **automatique** par GitHub Actions : pousser un tag `vX.Y.Z` publie les paquets
-publiables sur npm, avec **provenance signée** via OIDC (npm Trusted Publishing — aucun token).
-Détail du flux dans [CLAUDE.md](CLAUDE.md#mise-en-production-release-npm).
+**Automatic** through GitHub Actions: pushing a `vX.Y.Z` tag publishes the publishable packages to
+npm with **signed provenance** over OIDC (npm Trusted Publishing — no token). The flow is detailed
+in [CLAUDE.md](CLAUDE.md#mise-en-production-release-npm).
 
-## Contribuer
+## Contributing
 
-Les features partent de **`develop`** et y retournent par PR (`main` est la branche de release).
-Une feature = une branche = un **worktree** isolé. Lire
-[CONTRIBUTING.md](.github/CONTRIBUTING.md), le [code de conduite](.github/CODE_OF_CONDUCT.md) et
-la [politique de sécurité](.github/SECURITY.md).
+Features start from **`develop`** and return to it through a PR (`main` is the release branch).
+One feature = one branch = one isolated **worktree**. Read
+[CONTRIBUTING.md](.github/CONTRIBUTING.md), the [code of conduct](.github/CODE_OF_CONDUCT.md) and
+the [security policy](.github/SECURITY.md).
 
 ## Licence
 
-**MIT** © [Alban Pasquelin](https://github.com/pasquelin) — voir [LICENSE](LICENSE).
-À noter : la lib map3D elle-même est sous licence **PolyForm Noncommercial**.
-
----
-
-<details>
-<summary><b>English summary</b></summary>
-
-Monorepo of the **official plugins for [map3D](https://github.com/pasquelin/map3D)**, a real-time
-3D mapping library for React. **1 plugin = 1 package** (`packages/<name>/`) + its runnable example.
-
-- **[`@pasquelin/map3d-plugin-geopf`](packages/geopf)** — French building attributes (IGN BDTOPO,
-  WFS) resolved on 3D building pick, through the `enrich` lane.
-- **[`@pasquelin/map3d-plugin-windy`](packages/windy)** — real public webcams around the current
-  view (Windy Webcams API v3), through the `markers` lane.
-- `plan-3d` (layer-lane placeholder) and `plugin-template` (starter) stay private.
-
-`react`/`react-dom` 19, `three` ≥ 0.169 and `@pasquelin/map3d` ^0.2.0 are peer dependencies.
-Builds ship ESM + CJS + types, published to npm with signed provenance. Source, comments and docs
-are written in French. MIT licensed.
-
-```bash
-npm i @pasquelin/map3d @pasquelin/map3d-plugin-geopf
-```
-
-</details>
+**MIT** © [Alban Pasquelin](https://github.com/pasquelin) — see [LICENSE](LICENSE).
+Note: the map3D library itself is licensed under **PolyForm Noncommercial**.
