@@ -38,8 +38,10 @@ import { useBuildingEnrichment } from '@pasquelin/map3d'
 const panel: CSSProperties = {
   position: 'absolute',
   top: 16,
-  left: '50%',
-  transform: 'translateX(-50%)',
+  left: 16,
+  right: 16,
+  width: 'fit-content',
+  margin: '0 auto',
   zIndex: 'var(--m3d-z-floating-hud)',
   padding: '10px 14px',
   border: '1px solid var(--m3d-border)',
@@ -68,14 +70,16 @@ function BuildingInfo() {
 }
 ```
 
-L'exemple (`example/src/App.tsx`) monte ce même composant. Le canvas de la carte est en position
-absolue : un enfant de `<Map>` laissé dans le flux reste dessous, invisible. D'où la position et
-le niveau « HUD flottant » de la carte (`--m3d-z-floating-hud`, qui suit
-`style.zIndex.floatingHud`) : au-dessus d'elle, sous ses barres. Le panneau est centré en haut
-parce que le coin haut-gauche est celui du champ de recherche (`<Map search>`). Fond, bordure et
-arrondi viennent du thème de la carte ; la couleur du texte et la police en sont héritées.
-`e.data` vaut `{}` quand la BDTOPO n'a aucun bâtiment dans le rayon de recherche (`searchRadius`)
-autour du point cliqué.
+L'exemple du dépôt
+([`example/src/App.tsx`](https://github.com/pasquelin/plugingsMap3D/blob/main/packages/geopf/example/src/App.tsx))
+monte ce même composant. Le canvas de la carte est en position absolue : un enfant de `<Map>`
+laissé dans le flux reste dessous, invisible. D'où la position et le niveau « HUD flottant » de la
+carte (`--m3d-z-floating-hud`, qui suit `style.zIndex.floatingHud`) : au-dessus d'elle, sous ses
+barres. Fond, bordure et arrondi viennent du thème de la carte ; la couleur du texte et la police
+en sont héritées. Le panneau est ici centré en haut : placez-le où votre interface laisse de la
+place (avec `<Map search>`, le champ de recherche occupe le coin haut-gauche sur 320 px et passe
+au-dessus). `e.data` vaut `{}` quand le plugin n'a aucun attribut à remonter : le plus souvent,
+aucun bâtiment BDTOPO dans la zone de recherche (`searchRadius`) autour du point cliqué.
 
 ## Configuration (`geopfConfig`)
 

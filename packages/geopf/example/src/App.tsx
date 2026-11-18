@@ -5,14 +5,17 @@ import { geopfBatiments } from '@pasquelin/map3d-plugin-geopf'
 
 /**
  * Le canvas de la carte est en position absolue : un enfant de <Map> laissé dans le flux reste
- * dessous. D'où la position et le niveau « HUD flottant » de map3d (au-dessus de la carte, sous
- * ses barres) ; fond, bordure et arrondi viennent de son thème, texte et police en sont hérités.
+ * dessous. D'où la position (centré en haut, à 16 px des bords) et le niveau « HUD flottant » de
+ * map3d (au-dessus de la carte, sous ses barres) ; fond, bordure et arrondi viennent de son thème,
+ * texte et police en sont hérités.
  */
 const panel: CSSProperties = {
   position: 'absolute',
   top: 16,
-  left: '50%',
-  transform: 'translateX(-50%)',
+  left: 16,
+  right: 16,
+  width: 'fit-content',
+  margin: '0 auto',
   zIndex: 'var(--m3d-z-floating-hud)',
   padding: '10px 14px',
   border: '1px solid var(--m3d-border)',
@@ -32,7 +35,7 @@ function GeopfBuildingInfo() {
   if (e.error) return <div style={panel}>Indisponible : {e.error.message}</div>
   if (!e.data) return null
   const attrs = Object.entries(e.data)
-  // Le plugin répond `{}` quand la BDTOPO n'a aucun bâtiment dans le rayon de recherche (`searchRadius`).
+  // Le plugin répond `{}` quand il n'a aucun attribut à remonter : le plus souvent, aucun bâtiment BDTOPO autour du point.
   if (attrs.length === 0) return <div style={panel}>Aucun attribut IGN pour ce bâtiment</div>
   return (
     <div style={panel}>
