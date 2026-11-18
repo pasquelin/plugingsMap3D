@@ -35,21 +35,47 @@ contexte carte) :
 import type { CSSProperties } from 'react'
 import { useBuildingEnrichment } from '@pasquelin/map3d'
 
-const panel: CSSProperties = { position: 'absolute', top: 16, left: 16, zIndex: 'var(--m3d-z-floating-hud)' }
+const panel: CSSProperties = {
+  position: 'absolute',
+  top: 16,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  zIndex: 'var(--m3d-z-floating-hud)',
+  padding: '10px 14px',
+  border: '1px solid var(--m3d-border)',
+  borderRadius: 'var(--m3d-radius-lg)',
+  background: 'var(--m3d-panel)',
+  fontSize: 'var(--m3d-size-sm)',
+  lineHeight: 1.5,
+}
 
 function BuildingInfo() {
   const e = useBuildingEnrichment()
   if (e.loading) return <div style={panel}>Chargement…</div>
   if (e.error) return <div style={panel}>Indisponible : {e.error.message}</div>
   if (!e.data) return null
-  return <div style={panel}>{Object.entries(e.data).map(([k, v]) => <div key={k}>{k} : {String(v)}</div>)}</div>
+  const attrs = Object.entries(e.data)
+  if (attrs.length === 0) return <div style={panel}>Aucun attribut IGN pour ce bâtiment</div>
+  return (
+    <div style={panel}>
+      {attrs.map(([k, v]) => (
+        <div key={k}>
+          <b>{k}</b> : {String(v)}
+        </div>
+      ))}
+    </div>
+  )
 }
 ```
 
-Le canvas de la carte est en position absolue : un enfant de `<Map>` laissé dans le flux reste
-dessous, invisible. D'où la position et le niveau « HUD flottant » de la carte
-(`--m3d-z-floating-hud`, qui suit `style.zIndex.floatingHud`) : au-dessus d'elle, sous ses barres.
-`e.data` vaut `{}` quand la BDTOPO n'a aucun bâtiment sous le point cliqué.
+L'exemple (`example/src/App.tsx`) monte ce même composant. Le canvas de la carte est en position
+absolue : un enfant de `<Map>` laissé dans le flux reste dessous, invisible. D'où la position et
+le niveau « HUD flottant » de la carte (`--m3d-z-floating-hud`, qui suit
+`style.zIndex.floatingHud`) : au-dessus d'elle, sous ses barres. Le panneau est centré en haut
+parce que le coin haut-gauche est celui du champ de recherche (`<Map search>`). Fond, bordure et
+arrondi viennent du thème de la carte ; la couleur du texte et la police en sont héritées.
+`e.data` vaut `{}` quand la BDTOPO n'a aucun bâtiment dans le rayon de recherche (`searchRadius`)
+autour du point cliqué.
 
 ## Configuration (`geopfConfig`)
 
