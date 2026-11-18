@@ -16,6 +16,9 @@ import { geopfBatiments } from '@pasquelin/map3d-plugin-geopf'
 <Map plugins={[geopfBatiments()]} />
 ```
 
+**Compatibilité** : `@pasquelin/map3d` `>=0.2.0 <0.8.0` (peerDependency — de 0.2 à 0.7),
+`react` / `react-dom` 19, `three` ≥ 0.169.
+
 Le plugin est **désactivé par défaut** (`enabledByDefault: false`) : l'utilisateur l'active depuis
 le hub des plugins (menu Réglages). Une fois actif, il s'active sur l'outil « sélectionner un
 bâtiment » (pick de bâtiment 3D) déjà fourni par map3D.
@@ -63,3 +66,7 @@ pnpm --filter @pasquelin/map3d-plugin-geopf-example dev
 Nécessite `VITE_CESIUM_ION_TOKEN` (fichier `.env` du package `example/`) pour de vrais bâtiments 3D ;
 sans token l'exemple retombe sur le globe ellipsoïde de repli (le pick de bâtiment ne peut alors
 rien enrichir).
+
+L'exemple, lui, attend `@pasquelin/map3d` ≥ 0.7.0 : le token y passe par l'entrée à part de la lib,
+`<Map tileset3d={cesiumIon({ token })}>` avec `cesiumIon` importé de
+`@pasquelin/map3d/cesium-ion` (la prop `cesiumIonToken` a été retirée en 0.7.0).

@@ -51,8 +51,11 @@ npm i @pasquelin/map3d @pasquelin/map3d-plugin-geopf
 # ou : pnpm add … / yarn add …
 ```
 
-`react`, `react-dom` (19), `three` (≥ 0.169) et `@pasquelin/map3d` (^0.2.0) sont des
-**peerDependencies** — jamais bundlées par les plugins.
+`react`, `react-dom` (19), `three` (≥ 0.169) et `@pasquelin/map3d` (`>=0.2.0 <0.8.0` : de 0.2
+à 0.7) sont des **peerDependencies** — jamais bundlées par les plugins. La borne haute se
+relève à chaque nouvelle mineure de map3D, une fois les plugins vérifiés contre elle : en
+`0.x`, une mineure de la lib peut casser le contrat de plugin. Les exemples de ce dépôt
+demandent, eux, map3D ≥ 0.7.0 (ils passent par son entrée `@pasquelin/map3d/cesium-ion`).
 
 ## Démarrage rapide
 

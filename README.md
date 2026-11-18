@@ -51,8 +51,11 @@ npm i @pasquelin/map3d @pasquelin/map3d-plugin-geopf
 # or: pnpm add … / yarn add …
 ```
 
-`react`, `react-dom` (19), `three` (≥ 0.169) and `@pasquelin/map3d` (^0.2.0) are
-**peerDependencies** — never bundled by the plugins.
+`react`, `react-dom` (19), `three` (≥ 0.169) and `@pasquelin/map3d` (`>=0.2.0 <0.8.0`: 0.2
+through 0.7) are **peerDependencies** — never bundled by the plugins. The upper bound is raised
+with each new map3D minor, once the plugins have been checked against it: in `0.x`, a minor of
+the library may break the plugin contract. The examples of this repository need map3D ≥ 0.7.0
+(they go through its `@pasquelin/map3d/cesium-ion` entry).
 
 ## Quick start
 

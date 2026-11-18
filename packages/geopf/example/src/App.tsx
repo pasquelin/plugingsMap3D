@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Map, useBuildingEnrichment } from '@pasquelin/map3d'
+import { cesiumIon } from '@pasquelin/map3d/cesium-ion'
 import { geopfBatiments } from '@pasquelin/map3d-plugin-geopf'
 
 /**
@@ -30,7 +31,7 @@ export function App() {
       center={{ lat: 48.8566, lng: 2.3522 }}
       zoom={17}
       style={{ height: '100%' }}
-      cesiumIonToken={import.meta.env.VITE_CESIUM_ION_TOKEN}
+      tileset3d={cesiumIon({ token: import.meta.env.VITE_CESIUM_ION_TOKEN })}
       plugins={plugins}
     >
       <GeopfBuildingInfo />
