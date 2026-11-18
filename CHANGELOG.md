@@ -5,7 +5,7 @@ Les plugins publiables (`@pasquelin/map3d-plugin-geopf`, `@pasquelin/map3d-plugi
 version unifiée** : un tag `vX.Y.Z` les publie ensemble. `@pasquelin/map3d-plugin-plan-3d`
 (placeholder) et `@pasquelin/map3d-plugin-template` (gabarit) restent **privés, non publiés**.
 
-## [Non publié]
+## [0.1.2] — 2026-11-18
 
 ### fix : les plugins acceptent `@pasquelin/map3d` de 0.2 à 0.7
 
