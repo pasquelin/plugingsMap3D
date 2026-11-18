@@ -1,7 +1,9 @@
 // Contrôle de la plage `@pasquelin/map3d` acceptée par les plugins. Elle est recopiée à la
 // main dans le `package.json` de chaque paquet et dans la documentation : ce script la lit à
 // UNE source — les peerDependencies de geopf, paquet publié — et sort en erreur, fichier et
-// ligne à l'appui, dès qu'une copie s'en écarte.
+// ligne à l'appui, dès qu'une copie s'en écarte. Il tient aussi la dépendance de développement
+// de la racine sur la mineure la plus récente de la plage : la CI ne vérifie la borne haute
+// que par elle.
 //
 //   node scripts/map3d-range.mjs          # contrôle, rejoué par `pnpm validater`
 //   node scripts/map3d-range.mjs --min    # affiche la borne basse (lue par la CI)
@@ -17,7 +19,11 @@ const root = resolve(dirname(self), '..')
 
 const LIB = '@pasquelin/map3d'
 const SOURCE = 'packages/geopf/package.json'
-const SKIPPED_DIRS = new Set(['.git', 'node_modules', 'dist'])
+
+// Les dossiers cachés sont ceux des outils (`.git`, éditeur, notes locales) : `.github` seul
+// porte de la documentation.
+export const skipped = (name) =>
+  name === 'node_modules' || name === 'dist' || (name.startsWith('.') && name !== '.github')
 
 // Les deux écritures d'une plage, bornes capturées. Les blancs couvrent le retour à la ligne :
 // « 0.2\nthrough 0.7 » est une seule citation. Les garde-fous autour de la seconde écartent
@@ -58,13 +64,24 @@ export function checkText(text, expected) {
   return { count, errors }
 }
 
+/** La devDependency tient-elle sur la mineure la plus récente de la plage (`^0.7.0` pour « de 0.2 à 0.7 ») ? */
+export function tracksUpperMinor(spec, expected) {
+  return /^[~^]?(\d+\.\d+)\.\d+$/.exec(spec ?? '')?.[1] === expected.minors[1]
+}
+
 const read = (file) => readFileSync(resolve(root, file), 'utf8')
+
+/** `fichier:ligne` de la ligne d'un `package.json` qui nomme la lib ; le fichier seul si elle n'y est pas. */
+function where(file, text) {
+  const line = text.split('\n').findIndex((l) => l.includes(`"${LIB}"`)) + 1
+  return line ? `${file}:${line}` : file
+}
 
 function* markdownFiles(dir = '') {
   for (const entry of readdirSync(resolve(root, dir), { withFileTypes: true })) {
     const path = join(dir, entry.name)
     if (entry.isDirectory()) {
-      if (!SKIPPED_DIRS.has(entry.name)) yield* markdownFiles(path)
+      if (!skipped(entry.name)) yield* markdownFiles(path)
     } else if (entry.name.endsWith('.md') && path !== 'CHANGELOG.md') yield path
   }
 }
@@ -86,15 +103,23 @@ function main() {
     const text = read(file)
     const found = JSON.parse(text).peerDependencies?.[LIB]
     if (found === expected.range) continue
-    const line = text.split('\n').findIndex((l) => l.includes(`"${LIB}"`)) + 1
-    errors.push(`${file}${line ? `:${line}` : ''} : ${found ? `« ${found} »` : `peerDependency ${LIB} absente`}`)
+    errors.push(`${where(file, text)} : ${found ? `« ${found} »` : `peerDependency ${LIB} absente`}`)
+  }
+
+  const rootText = read('package.json')
+  const dev = JSON.parse(rootText).devDependencies?.[LIB]
+  if (!tracksUpperMinor(dev, expected)) {
+    const shown = dev ? `« ${dev} »` : 'absente'
+    errors.push(
+      `${where('package.json', rootText)} : devDependency ${shown}, attendue sur la mineure ${expected.minors[1]}`,
+    )
   }
 
   let citations = 0
   for (const file of markdownFiles()) {
-    const { count, errors: found } = checkText(read(file), expected)
+    const { count, errors: mismatches } = checkText(read(file), expected)
     citations += count
-    for (const e of found) errors.push(`${file}:${e.line} : « ${e.found} »`)
+    for (const e of mismatches) errors.push(`${file}:${e.line} : « ${e.found} »`)
   }
 
   if (errors.length) {
@@ -102,12 +127,16 @@ function main() {
     for (const e of errors) console.error(`  ${e}`)
     process.exit(1)
   }
-  console.log(`Plage ${LIB} « ${expected.range} » : ${manifests.length} package.json, ${citations} citations.`)
+  console.log(
+    `Plage ${LIB} « ${expected.range} » :`,
+    `${manifests.length} package.json, ${citations} citations, devDependency « ${dev} ».`,
+  )
 }
 
-// Lancé, pas importé : les tests importent `parseRange` et `checkText` sans rejouer le contrôle.
+// Lancé, pas importé : les tests importent les fonctions sans rejouer le contrôle.
 // `realpathSync` : Node résout les liens symboliques du script lancé, pas ceux de `argv`.
-if (realpathSync(process.argv[1]) === self) {
+// Sans `argv[1]` (`node -e`), le module ne peut qu'être importé.
+if (process.argv[1] && realpathSync(process.argv[1]) === self) {
   try {
     main()
   } catch (e) {

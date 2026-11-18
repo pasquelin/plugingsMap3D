@@ -100,10 +100,12 @@ cp -r packages/plugin-template packages/my-plugin
 pnpm install && pnpm validater
 ```
 
-The copied example still names the template in four places, to rename together:
-`example/package.json` (`name` and the dependency), the import in `example/src/App.tsx`, the
-`paths` key of `example/tsconfig.json` and the alias of `example/vite.config.ts`. Renamed
-halfway, the example loads the template instead of your plugin, without any error.
+The copied example still names the template, to rename together: `example/package.json`
+(`name` and the dependency), the import in `example/src/App.tsx`, the `paths` key of
+`example/tsconfig.json` and the alias of `example/vite.config.ts` — and, for good measure, the
+`<title>` of `example/index.html`. A partial rename can go through without any error: with the
+alias renamed but the import and the dependency left on `plugin-template`, the example loads
+the template instead of your plugin.
 
 The [plugin contract](https://github.com/pasquelin/map3D/blob/main/docs/en/PLUGINS.md)
 (`definePlugin`, the `enrich` / `markers` / `layer` lanes) is documented on the map3D side. To
@@ -119,7 +121,7 @@ propose an official plugin here, see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 | `pnpm typecheck` | `tsc --noEmit` per package and per example |
 | `pnpm test` | Vitest (colocated `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
-| `pnpm check:range` | the map3D range of the `peerDependencies`: the same in every `package.json` and in the docs |
+| `pnpm check:range` | the map3D range of the `peerDependencies`: the same in every `package.json` and in the docs, with the root devDependency on the latest minor of that range |
 | **`pnpm validater`** | typecheck + lint + format:check + check:range + test — **the full gate**, replayed in CI |
 | `pnpm version:plugins X.Y.Z` | unified bump (root + `geopf` + `windy`) |
 

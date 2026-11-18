@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { checkText, parseRange } from './map3d-range.mjs'
+import { checkText, parseRange, skipped, tracksUpperMinor } from './map3d-range.mjs'
 
 const expected = parseRange('>=0.2.0 <0.8.0')
 
@@ -40,5 +40,28 @@ describe('checkText', () => {
   it('ignore les versions complètes et les nombres isolés', () => {
     const text = 'De map3d 0.2.0 à 0.7.0 ; `three` ≥ 0.169 ; Node ≥ 22.13 ; map3D ≥ 0.7.0.'
     expect(checkText(text, expected)).toEqual({ count: 0, errors: [] })
+  })
+})
+
+describe('tracksUpperMinor', () => {
+  it('accepte la dépendance de développement posée sur la mineure la plus récente de la plage', () => {
+    expect(tracksUpperMinor('^0.7.0', expected)).toBe(true)
+    expect(tracksUpperMinor('~0.7.0', expected)).toBe(true)
+    expect(tracksUpperMinor('0.7.3', expected)).toBe(true)
+  })
+  it('refuse une autre mineure, une plage ou une dépendance absente', () => {
+    expect(tracksUpperMinor('^0.6.0', expected)).toBe(false)
+    expect(tracksUpperMinor('^0.8.0', expected)).toBe(false)
+    expect(tracksUpperMinor('>=0.2.0 <0.8.0', expected)).toBe(false)
+    expect(tracksUpperMinor(undefined, expected)).toBe(false)
+  })
+})
+
+describe('skipped', () => {
+  it('parcourt la documentation, `.github` compris', () => {
+    expect(['.github', 'docs', 'packages', 'geopf'].filter(skipped)).toEqual([])
+  })
+  it('écarte les dépendances, les builds et les dossiers cachés des outils', () => {
+    expect(['node_modules', 'dist', '.git', '.idea', '.claude'].every(skipped)).toBe(true)
   })
 })

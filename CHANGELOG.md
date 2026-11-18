@@ -23,17 +23,20 @@ leur `package.json`.
   et sort en erreur, fichier et ligne à l'appui, si un `package.json` de `packages/` ou une
   citation d'un fichier `.md` s'en écarte, sous ses deux écritures (`>=0.2.0 <0.8.0`, « de 0.2
   à 0.7 »). Ce journal, lui, garde les plages de son époque : il n'est pas contrôlé. Le job
-  `map3d-min` lit sa version au même endroit (`--min`).
+  `map3d-min` lit sa version au même endroit (`--min`). Le script tient aussi la dépendance
+  de développement de la racine sur la mineure la plus récente de la plage (`^0.7.0`) : la CI
+  ne vérifie la borne haute que par elle.
 - **`engines.node` `>=22.13` au `package.json` racine** (privé), le plancher que la
   documentation annonçait sans que rien ne le porte. Sous cette version, pnpm avertit
   (`WARN Unsupported engine`) sans refuser : le mode strict (`engine-strict`) n'est pas
   activé. Les paquets publiés ne déclarent pas d'`engines` — un plugin n'impose pas de version
   de Node à l'application qui l'installe.
 - **Copier le gabarit** : la documentation dit désormais que l'exemple copié nomme encore
-  `plugin-template` à quatre endroits, à renommer ensemble — `example/package.json` (`name`
-  et la dépendance), l'import de `example/src/App.tsx`, la clé `paths` de
-  `example/tsconfig.json` et l'alias de `example/vite.config.ts`. Renommé à moitié, l'exemple
-  charge le gabarit à la place du nouveau plugin, sans aucune erreur.
+  `plugin-template`, à renommer ensemble — `example/package.json` (`name` et la dépendance),
+  l'import de `example/src/App.tsx`, la clé `paths` de `example/tsconfig.json`, l'alias de
+  `example/vite.config.ts` et, pour la forme, le `<title>` de `example/index.html`. Un
+  renommage partiel peut passer sans aucune erreur : alias renommé, import et dépendance
+  laissés sur `plugin-template`, l'exemple charge le gabarit à la place du nouveau plugin.
 
 ## [0.1.2] — 2026-11-18
 

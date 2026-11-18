@@ -62,7 +62,8 @@ jobs:
             fi
           done
 
-      # Même barrière que la CI (typecheck strict, lint, format, tests) avant de publier.
+      # Même barrière que le job `validate` de la CI (typecheck strict, lint, format, plage
+      # map3d, tests) avant de publier. Son job `map3d-min` n'est pas rejoué ici.
       - name: Valider
         run: pnpm validater
 
