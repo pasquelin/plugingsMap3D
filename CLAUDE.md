@@ -13,7 +13,11 @@ Les plugins étendent la lib **`@pasquelin/map3d`** (dépôt sibling `../map3D`,
 npm). Ils l'importent et la déclarent en **peerDependency `@pasquelin/map3d` `>=0.2.0 <0.8.0`** —
 jamais bundlée. Idem `react`/`react-dom` 19 et `three` ≥ 0.169. Le contrat de plugin
 (`definePlugin`, voies `enrich`/`markers`/`layer`) vient de la lib. La borne haute se relève
-à chaque nouvelle mineure de map3d, après vérification des plugins contre elle.
+à chaque nouvelle mineure de map3d, après vérification des plugins contre elle. La plage se
+change à un seul endroit, les `peerDependencies` de `geopf` : `pnpm check:range` signale
+ensuite chaque `package.json` et chaque citation de la documentation restés sur l'ancienne,
+et la devDependency de la racine tant qu'elle n'est pas sur la mineure la plus récente de la
+plage — la CI ne vérifie la borne haute que par elle.
 
 Gestionnaire de paquets : **pnpm** (`pnpm-workspace.yaml` → `packages/*`, `packages/*/example`).
 
@@ -38,7 +42,8 @@ pnpm test             # vitest run (tests colocalisés *.test.ts)
 pnpm lint             # eslint packages
 pnpm format           # prettier --write "packages/**/*.{ts,tsx}"
 pnpm format:check
-pnpm validater        # typecheck + lint + format:check + test — le garde-fou complet
+pnpm check:range      # plage map3d : package.json, doc et devDependency racine alignés
+pnpm validater        # typecheck + lint + format:check + check:range + test — le garde-fou complet
 pnpm version:plugins X.Y.Z   # bump UNIFIÉ (racine + geopf + windy)
 ```
 
@@ -112,7 +117,10 @@ signée (`id-token: write`, `npm i -g npm@latest` pour npm ≥ 11.5.1).
 ### CI (`.github/workflows/ci.yml`)
 
 À chaque push sur `main`/`develop` et chaque PR : rejoue `pnpm validater`. Un test cassé
-(ou un `any`/format qui glisse) bloque la fusion.
+(ou un `any`/format qui glisse) bloque la fusion. Un second job, `map3d-min`, remplace map3d
+par la borne basse de la plage (`node scripts/map3d-range.mjs --min`), puis rejoue le
+typecheck des paquets — pas des exemples, qui demandent la map3d des devDependencies — et les
+tests. `release.yml` ne rejoue pas ce second job.
 
 ## Modèle de branches — `develop` base d'intégration, `main` release
 
@@ -137,7 +145,12 @@ git worktree remove ../plugingsMap3D-feat-x
 ## Ajouter un plugin
 
 Copier `packages/plugin-template` (structure + `vite.config.ts` + `tsconfig.json`),
-renommer en `@pasquelin/map3d-plugin-<nom>`. S'il doit être publié : retirer `private`, compléter le
+renommer en `@pasquelin/map3d-plugin-<nom>`. L'exemple copié nomme encore le gabarit, à
+renommer ensemble : `example/package.json` (`name` et la dépendance), l'import de
+`example/src/App.tsx`, la clé `paths` de `example/tsconfig.json` et l'alias de
+`example/vite.config.ts` — et, pour la forme, le `<title>` de `example/index.html`. Un
+renommage partiel peut passer sans aucune erreur : alias renommé, import et dépendance laissés
+sur `plugin-template`, l'exemple charge le gabarit à la place du plugin. S'il doit être publié : retirer `private`, compléter le
 packaging (cf. `geopf`/`windy`), ajouter son `LICENSE`, l'inclure dans la version unifiée
 et dans les étapes `publish` de `release.yml`. Sinon, le laisser `private`.
 
