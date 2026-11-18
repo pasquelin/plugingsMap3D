@@ -44,8 +44,9 @@ function BuildingInfo() {
 ```
 
 Le canvas de la carte est en position absolue : un enfant de `<Map>` laissé dans le flux reste
-dessous, invisible. Donnez-lui une position et un `z-index` (l'exemple : `position: absolute`,
-`z-index: 200`).
+dessous, invisible. Donnez-lui une position et le niveau « HUD flottant » de la carte, au-dessus
+d'elle et sous ses barres (l'exemple : `position: absolute`, `z-index: var(--m3d-z-floating-hud)`,
+qui suit `style.zIndex.floatingHud`).
 
 ## Configuration (`geopfConfig`)
 
