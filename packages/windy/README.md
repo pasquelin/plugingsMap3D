@@ -15,6 +15,9 @@ import { windyWebcams } from '@pasquelin/map3d-plugin-windy'
 <Map plugins={[windyWebcams({ apiKey: import.meta.env.VITE_WINDY_API_KEY })]} />
 ```
 
+**Compatibilité** : `@pasquelin/map3d` `>=0.2.0 <0.8.0` (peerDependency — de 0.2 à 0.7),
+`react` / `react-dom` 19, `three` ≥ 0.169.
+
 Le plugin est **désactivé par défaut** (`enabledByDefault: false`) : l'utilisateur l'active
 depuis le hub des plugins (menu Réglages). `init.apiKey` ne fait que **seeder** le défaut du champ
 `apiKey` — modifiable ensuite depuis le hub (champ `secret`, jamais affiché en clair).
@@ -67,5 +70,10 @@ pnpm --filter @pasquelin/map3d-plugin-windy-example dev
 ```
 
 Nécessite `VITE_WINDY_API_KEY` (fichier `.env` du package `example/`, gitignoré) pour de vraies
-webcams, et `VITE_CESIUM_ION_TOKEN` pour de vrais bâtiments 3D (sinon repli sur le globe
-ellipsoïde). Active le plugin depuis le hub des plugins puis navigue sur la carte.
+webcams. Active le plugin depuis le hub des plugins puis navigue sur la carte.
+
+Par défaut, le fond de carte et les bâtiments viennent de l'origine interne de map3D
+(`providers.internal.origin`). `VITE_CESIUM_ION_TOKEN` est facultatif : renseigné, l'exemple
+branche les tuiles 3D photoréalistes, ce qui demande les deux à la fois — la source
+`tileset3d={cesiumIon({ token })}` **et** le réglage `providers.tiles3d.provider: 'external'` —,
+à voir en passant la carte en 3D.

@@ -8,7 +8,7 @@ rédigés **en français**. Les identifiants restent en anglais (`enrichBuilding
 
 ## Prérequis
 
-- **Node 22** et **pnpm** (la version est épinglée par `packageManager` dans le `package.json` racine)
+- **Node ≥ 22.13** (le plancher de `@pasquelin/map3d` 0.7) et **pnpm** (la version est épinglée par `packageManager` dans le `package.json` racine)
 - `pnpm install` à la racine — le monorepo couvre `packages/*` et `packages/*/example`
 
 ## Le garde-fou : `pnpm validater`
@@ -23,7 +23,7 @@ C'est **exactement** ce que rejoue la CI sur chaque PR. Une PR dont `validater` 
 | Commande | Effet |
 |---|---|
 | `pnpm build` | build lib de chaque package (`dist/` : ESM + CJS + `.d.ts`) |
-| `pnpm typecheck` | `tsc --noEmit` par package |
+| `pnpm typecheck` | `tsc --noEmit` par package et par exemple |
 | `pnpm test` | Vitest (tests colocalisés `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
 | `pnpm --filter @pasquelin/map3d-plugin-<nom>-example dev` | lance l'exemple d'un plugin |

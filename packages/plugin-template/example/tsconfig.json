@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    // Même chemin que l'alias de `vite.config.ts` : le plugin par ses SOURCES. Sans effet tant
+    // que le gabarit pointe `types` vers `./src/index.ts` ; à garder en le copiant : dès qu'un
+    // plugin devient publiable, ses `exports` visent `dist/`, absent tant qu'on n'a pas buildé.
+    "paths": { "@pasquelin/map3d-plugin-template": ["../src/index.ts"] }
+  },
+  "include": ["src"]
+}

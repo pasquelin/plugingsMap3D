@@ -22,7 +22,7 @@
     "version:plugins": "node scripts/version.mjs"
   },
   "devDependencies": {
-    "@pasquelin/map3d": "^0.2.0",
+    "@pasquelin/map3d": "^0.7.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "three": "^0.169.0",

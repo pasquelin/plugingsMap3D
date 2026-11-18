@@ -10,9 +10,10 @@ Guide pour Claude Code (claude.ai/code) sur ce dépôt.
 Le code (commentaires, JSDoc, docs) est **en français** : s'y conformer.
 
 Les plugins étendent la lib **`@pasquelin/map3d`** (dépôt sibling `../map3D`, publié sur
-npm). Ils l'importent et la déclarent en **peerDependency `@pasquelin/map3d` `^0.2.0`** —
+npm). Ils l'importent et la déclarent en **peerDependency `@pasquelin/map3d` `>=0.2.0 <0.8.0`** —
 jamais bundlée. Idem `react`/`react-dom` 19 et `three` ≥ 0.169. Le contrat de plugin
-(`definePlugin`, voies `enrich`/`markers`/`layer`) vient de la lib.
+(`definePlugin`, voies `enrich`/`markers`/`layer`) vient de la lib. La borne haute se relève
+à chaque nouvelle mineure de map3d, après vérification des plugins contre elle.
 
 Gestionnaire de paquets : **pnpm** (`pnpm-workspace.yaml` → `packages/*`, `packages/*/example`).
 
@@ -32,7 +33,7 @@ Les deux paquets publiables partagent **une version unifiée** (cf. release).
 ```bash
 pnpm install
 pnpm build            # pnpm -r : build lib de chaque package (dist/ ESM+CJS+.d.ts)
-pnpm typecheck        # pnpm -r typecheck (tsc --noEmit par package)
+pnpm typecheck        # pnpm -r typecheck (tsc --noEmit par package et par exemple)
 pnpm test             # vitest run (tests colocalisés *.test.ts)
 pnpm lint             # eslint packages
 pnpm format           # prettier --write "packages/**/*.{ts,tsx}"

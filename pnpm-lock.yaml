@@ -18,8 +18,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1
       '@pasquelin/map3d':
-        specifier: ^0.2.0
-        version: 0.2.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)
+        specifier: ^0.7.0
+        version: 0.7.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.17
@@ -461,9 +461,9 @@ packages:
   '@microsoft/tsdoc@0.16.0':
     resolution: {integrity: sha512-xgAyonlVVS+q7Vc7qLW0UrJU7rSFcETRWsqdXZtjzRU8dF+6CkozTK4V4y1LwOX7j8r/vHphjDeMeGI4tNGeGA==}
 
-  '@pasquelin/map3d@0.2.0':
-    resolution: {integrity: sha512-hBbowXWBddQBpkpbYbOOmAFzkKhhIAMXsBGXoVMsYAxy9iOpTHPegP9IR1fqdPR2wTTgiF7PwzkO1gRAIpsGXQ==}
-    engines: {node: '>=18'}
+  '@pasquelin/map3d@0.7.0':
+    resolution: {integrity: sha512-AdjigKMkJgBE7vmpp8niju0Pjz5Kn0V0Js9ysC2i75lZDBVWg4BuaIW/QB79pUmhpJwEIdfL1z01FR0kez4HAg==}
+    engines: {node: '>=22.13'}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -1981,7 +1981,7 @@ snapshots:
 
   '@microsoft/tsdoc@0.16.0': {}
 
-  '@pasquelin/map3d@0.2.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)':
+  '@pasquelin/map3d@0.7.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)':
     dependencies:
       3d-tiles-renderer: 0.5.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(three@0.169.0)
       '@armyc2.c5isr.renderer/mil-sym-ts-web': 2.9.2
