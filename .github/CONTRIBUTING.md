@@ -8,17 +8,18 @@ rédigés **en français**. Les identifiants restent en anglais (`enrichBuilding
 
 ## Prérequis
 
-- **Node ≥ 22.13** (le plancher de `@pasquelin/map3d` 0.7) et **pnpm** (la version est épinglée par `packageManager` dans le `package.json` racine)
+- **Node ≥ 22.13** (le plancher de `@pasquelin/map3d` 0.7, déclaré dans `engines` : en dessous, pnpm avertit sans refuser) et **pnpm** (la version est épinglée par `packageManager` dans le `package.json` racine)
 - `pnpm install` à la racine — le monorepo couvre `packages/*` et `packages/*/example`
 
 ## Le garde-fou : `pnpm validater`
 
 ```bash
-pnpm validater   # typecheck + lint + format:check + test
+pnpm validater   # typecheck + lint + format:check + check:range + test
 ```
 
 C'est **exactement** ce que rejoue la CI sur chaque PR. Une PR dont `validater` échoue ne peut pas
-être fusionnée — lance-le en local avant de pousser.
+être fusionnée — lance-le en local avant de pousser. Un second job de la CI repasse le typecheck des
+paquets et les tests contre la plus ancienne `@pasquelin/map3d` de la plage.
 
 | Commande | Effet |
 |---|---|
@@ -26,6 +27,7 @@ C'est **exactement** ce que rejoue la CI sur chaque PR. Une PR dont `validater` 
 | `pnpm typecheck` | `tsc --noEmit` par package et par exemple |
 | `pnpm test` | Vitest (tests colocalisés `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
+| `pnpm check:range` | la plage map3D des `peerDependencies` : la même dans chaque `package.json` et dans la documentation, la devDependency de la racine sur la mineure la plus récente de cette plage |
 | `pnpm --filter @pasquelin/map3d-plugin-<nom>-example dev` | lance l'exemple d'un plugin |
 
 ## Modèle de branches
@@ -72,6 +74,12 @@ Portées usuelles : `geopf`, `windy`, `plan-3d`, `template`, `ci`, `docs`, `buil
 ## Ajouter un plugin
 
 1. `cp -r packages/plugin-template packages/mon-plugin`, puis renommer `name` et `meta.id`.
+   L'exemple copié nomme encore le gabarit, à renommer ensemble : `example/package.json`
+   (`name` et la dépendance), l'import de `example/src/App.tsx`, la clé `paths` de
+   `example/tsconfig.json` et l'alias de `example/vite.config.ts` — et, pour la forme, le
+   `<title>` de `example/index.html`. Un renommage partiel peut passer sans aucune erreur :
+   alias renommé, import et dépendance laissés sur `plugin-template`, l'exemple charge le
+   gabarit à la place du plugin.
 2. Choisir **une** voie du contrat (`enrich`, `markers` ou `layer`) — voir le
    [contrat de plugin](https://github.com/pasquelin/map3D/blob/main/docs/fr/PLUGINS.md).
 3. Écrire son `README.md`, son exemple exécutable dans `example/` et ses tests.
