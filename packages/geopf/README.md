@@ -23,6 +23,11 @@ Le plugin est **désactivé par défaut** (`enabledByDefault: false`) : l'utilis
 le hub des plugins (menu Réglages). Une fois actif, il s'active sur l'outil « sélectionner un
 bâtiment » (pick de bâtiment 3D) déjà fourni par map3D.
 
+Cet outil n'existe que lorsque la carte montre le **volume interne** de map3D : mode `'3d'` et
+`providers.tiles3d.provider: 'internal'` (le défaut), bâtiments extrudés servis par l'origine
+interne. Sur une carte plate ou sur des tuiles 3D photoréalistes — un maillage fusionné, sans
+bâtiment distinct — il n'y a rien à désigner, donc rien à enrichir.
+
 Pour lire l'enrichissement dans l'hôte, monter un composant enfant de `<Map>` (le hook exige le
 contexte carte) :
 
@@ -63,6 +68,6 @@ function BuildingInfo() {
 pnpm --filter @pasquelin/map3d-plugin-geopf-example dev
 ```
 
-Nécessite `VITE_CESIUM_ION_TOKEN` (fichier `.env` du package `example/`) pour de vrais bâtiments 3D ;
-sans token l'exemple retombe sur le globe ellipsoïde de repli (le pick de bâtiment ne peut alors
-rien enrichir).
+Aucune clé n'est nécessaire. L'exemple tourne sur les sources par défaut de map3D : le fond de
+carte et les bâtiments extrudés viennent de son origine interne (`providers.internal.origin`). Il
+démarre en 3D (`mapMode="3d"`), là où l'outil de sélection de bâtiment existe.

@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { Map, useBuildingEnrichment } from '@pasquelin/map3d'
-import { cesiumIon } from '@pasquelin/map3d/cesium-ion'
 import { geopfBatiments } from '@pasquelin/map3d-plugin-geopf'
 
 /**
@@ -23,17 +22,15 @@ function GeopfBuildingInfo() {
   )
 }
 
-/** Exemple autonome : la carte + geopf ; activer l'outil « sélectionner un bâtiment » puis cliquer. */
+/**
+ * Exemple autonome : la carte + geopf ; activer l'outil « sélectionner un bâtiment » puis cliquer.
+ * Sources par défaut de map3d et démarrage en 3D : l'outil n'existe que sur le volume interne
+ * (bâtiments extrudés), ni sur la carte plate ni sur des tuiles 3D photoréalistes.
+ */
 export function App() {
   const plugins = useMemo(() => [geopfBatiments()], [])
   return (
-    <Map
-      center={{ lat: 48.8566, lng: 2.3522 }}
-      zoom={17}
-      style={{ height: '100%' }}
-      tileset3d={cesiumIon({ token: import.meta.env.VITE_CESIUM_ION_TOKEN })}
-      plugins={plugins}
-    >
+    <Map center={{ lat: 48.8566, lng: 2.3522 }} zoom={17} mapMode="3d" style={{ height: '100%' }} plugins={plugins}>
       <GeopfBuildingInfo />
     </Map>
   )

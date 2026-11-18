@@ -55,7 +55,7 @@ npm i @pasquelin/map3d @pasquelin/map3d-plugin-geopf
 through 0.7) are **peerDependencies** — never bundled by the plugins. The upper bound is raised
 with each new map3D minor, once the plugins have been checked against it: in `0.x`, a minor of
 the library may break the plugin contract. The examples of this repository need map3D ≥ 0.7.0
-(they go through its `@pasquelin/map3d/cesium-ion` entry).
+(their optional Cesium ion token goes through its `@pasquelin/map3d/cesium-ion` entry).
 
 ## Quick start
 
@@ -88,6 +88,10 @@ pnpm --filter @pasquelin/map3d-plugin-geopf-example dev
 pnpm --filter @pasquelin/map3d-plugin-windy-example dev
 ```
 
+With no key at all, an example draws its basemap and its buildings from map3D's default internal
+origin — the one the library asks every application to replace with its own, through
+`providers.internal.origin` in the `config` prop of `<Map>`.
+
 ## Writing your own plugin
 
 ```bash
@@ -102,7 +106,7 @@ propose an official plugin here, see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ## Development
 
-**pnpm** monorepo (Node 22). Prerequisite: `pnpm install`.
+**pnpm** monorepo (Node ≥ 22.13, the floor of map3D 0.7). Prerequisite: `pnpm install`.
 
 | Command | Effect |
 |---|---|

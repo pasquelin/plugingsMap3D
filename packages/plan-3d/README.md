@@ -49,6 +49,8 @@ Le plugin est **désactivé par défaut** : l'utilisateur l'active depuis le hub
 pnpm --filter @pasquelin/map3d-plugin-plan-3d-example dev
 ```
 
-Nécessite `VITE_CESIUM_ION_TOKEN` (fichier `.env` du package `example/`) pour de vrais tuiles 3D ;
-sans token l'exemple retombe sur le globe ellipsoïde de repli (le cube reste visible, posé au sol
-de repli).
+Aucune clé n'est nécessaire : par défaut, le fond de carte et les bâtiments viennent de l'origine
+interne de map3D (`providers.internal.origin`). `VITE_CESIUM_ION_TOKEN` (fichier `.env` du
+package `example/`) est facultatif : renseigné, l'exemple branche les tuiles 3D photoréalistes,
+ce qui demande les deux à la fois — la source `tileset3d={cesiumIon({ token })}` **et** le
+réglage `providers.tiles3d.provider: 'external'` —, à voir en passant la carte en 3D.

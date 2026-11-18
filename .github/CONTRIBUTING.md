@@ -8,7 +8,7 @@ rédigés **en français**. Les identifiants restent en anglais (`enrichBuilding
 
 ## Prérequis
 
-- **Node 22** et **pnpm** (la version est épinglée par `packageManager` dans le `package.json` racine)
+- **Node ≥ 22.13** (le plancher de `@pasquelin/map3d` 0.7) et **pnpm** (la version est épinglée par `packageManager` dans le `package.json` racine)
 - `pnpm install` à la racine — le monorepo couvre `packages/*` et `packages/*/example`
 
 ## Le garde-fou : `pnpm validater`
