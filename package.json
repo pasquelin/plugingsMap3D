@@ -27,7 +27,7 @@
     "react-dom": "^19.0.0",
     "three": "^0.169.0",
     "three-mesh-bvh": "^0.9.13",
-    "supercluster": "^8.0.1",
+    "supercluster": "^9.1.0",
     "3d-tiles-renderer": "^0.5.0",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
