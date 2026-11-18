@@ -43,6 +43,10 @@ function BuildingInfo() {
 }
 ```
 
+Le canvas de la carte est en position absolue : un enfant de `<Map>` laissé dans le flux reste
+dessous, invisible. Donnez-lui une position et un `z-index` (l'exemple : `position: absolute`,
+`z-index: 200`).
+
 ## Configuration (`geopfConfig`)
 
 | Clé | Type | Défaut | Refetch | Description |
