@@ -31,8 +31,10 @@ lib, alors que rien dans le code des plugins ne s'y opposait.
   gelée toute source photoréaliste :
   - `geopf` n'a plus de jeton Cesium. Son exemple tourne sur les sources par défaut et démarre
     en 3D : un bâtiment ne se désigne que sur ce volume interne. Son panneau d'attributs
-    passe au-dessus de la carte : sans position ni `z-index`, il restait sous le canvas,
-    invisible (le README du paquet le dit désormais à qui recopie le composant).
+    passe au-dessus de la carte, au niveau et aux couleurs de son thème : sans position ni
+    `z-index`, il restait sous le canvas, invisible (le composant à recopier du README du
+    paquet porte désormais sa position). Il dit aussi quand l'IGN n'a aucun bâtiment sous le
+    point cliqué.
   - `windy`, `plan-3d` et `plugin-template` gardent `VITE_CESIUM_ION_TOKEN`, facultatif.
     Renseigné, l'exemple passe la source `tileset3d={cesiumIon({ token })}` (entrée à part
     `@pasquelin/map3d/cesium-ion`) **et** le réglage `providers.tiles3d.provider: 'external'` ;

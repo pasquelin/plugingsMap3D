@@ -11,9 +11,12 @@ function GeopfBuildingInfo() {
   if (e.loading) return <div className="geopf-enrich">Chargement…</div>
   if (e.error) return <div className="geopf-enrich">Indisponible : {e.error.message}</div>
   if (!e.data) return null
+  const attrs = Object.entries(e.data)
+  // Le plugin répond `{}` quand la BDTOPO n'a aucun bâtiment sous le point cliqué.
+  if (attrs.length === 0) return <div className="geopf-enrich">Aucun attribut IGN pour ce bâtiment</div>
   return (
     <div className="geopf-enrich">
-      {Object.entries(e.data).map(([k, v]) => (
+      {attrs.map(([k, v]) => (
         <div key={k}>
           <b>{k}</b> : {String(v)}
         </div>

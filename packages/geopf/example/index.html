@@ -4,8 +4,9 @@
     <style>
       html,body,#root{height:100%;margin:0}
       /* Le canvas de la carte est en position absolue : sans position ni z-index, le panneau reste dessous.
-         Niveau « HUD flottant » de map3d : au-dessus de la carte, sous les barres. */
-      .geopf-enrich{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:var(--m3d-z-floating-hud);padding:10px 14px;border-radius:10px;background:rgba(17,24,39,.92);color:#fff;font:13px/1.5 system-ui,sans-serif}
+         Niveau « HUD flottant » de map3d : au-dessus de la carte, sous les barres. Couleurs, police
+         et arrondi sont ceux du thème de la carte. */
+      .geopf-enrich{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:var(--m3d-z-floating-hud);padding:10px 14px;border:1px solid var(--m3d-border);border-radius:var(--m3d-radius-lg);background:var(--m3d-panel);color:var(--m3d-text);font:var(--m3d-size-sm)/1.5 var(--m3d-font)}
     </style>
   </head>
   <body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body>

@@ -32,21 +32,24 @@ Pour lire l'enrichissement dans l'hôte, monter un composant enfant de `<Map>` (
 contexte carte) :
 
 ```tsx
+import type { CSSProperties } from 'react'
 import { useBuildingEnrichment } from '@pasquelin/map3d'
+
+const panel: CSSProperties = { position: 'absolute', top: 16, left: 16, zIndex: 'var(--m3d-z-floating-hud)' }
 
 function BuildingInfo() {
   const e = useBuildingEnrichment()
-  if (e.loading) return <div>Chargement…</div>
-  if (e.error) return <div>Indisponible : {e.error.message}</div>
+  if (e.loading) return <div style={panel}>Chargement…</div>
+  if (e.error) return <div style={panel}>Indisponible : {e.error.message}</div>
   if (!e.data) return null
-  return <div>{Object.entries(e.data).map(([k, v]) => <div key={k}>{k} : {String(v)}</div>)}</div>
+  return <div style={panel}>{Object.entries(e.data).map(([k, v]) => <div key={k}>{k} : {String(v)}</div>)}</div>
 }
 ```
 
 Le canvas de la carte est en position absolue : un enfant de `<Map>` laissé dans le flux reste
-dessous, invisible. Donnez-lui une position et le niveau « HUD flottant » de la carte, au-dessus
-d'elle et sous ses barres (l'exemple : `position: absolute`, `z-index: var(--m3d-z-floating-hud)`,
-qui suit `style.zIndex.floatingHud`).
+dessous, invisible. D'où la position et le niveau « HUD flottant » de la carte
+(`--m3d-z-floating-hud`, qui suit `style.zIndex.floatingHud`) : au-dessus d'elle, sous ses barres.
+`e.data` vaut `{}` quand la BDTOPO n'a aucun bâtiment sous le point cliqué.
 
 ## Configuration (`geopfConfig`)
 
