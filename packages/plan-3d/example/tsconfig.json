@@ -1,0 +1,8 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    // Même chemin que l'alias de `vite.config.ts` : le plugin par ses SOURCES.
+    "paths": { "@pasquelin/map3d-plugin-plan-3d": ["../src/index.ts"] }
+  },
+  "include": ["src"]
+}

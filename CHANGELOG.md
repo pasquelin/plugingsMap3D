@@ -7,6 +7,12 @@ version unifiée** : un tag `vX.Y.Z` les publie ensemble. `@pasquelin/map3d-plug
 
 ## [Non publié]
 
+### ci : `pnpm typecheck` couvre aussi les exemples
+
+Chaque exemple a son `tsconfig.json` et son script `typecheck` : `pnpm validater`, donc la CI,
+les lit désormais. Aucun contrôle ne le faisait — une prop de `<Map>` retirée par la lib
+(`cesiumIonToken`, map3d 0.7.0) y restait sans rien casser.
+
 ## [0.1.1] — 2026-08-02
 
 ### ci : release en OIDC pur

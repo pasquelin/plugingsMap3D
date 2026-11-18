@@ -104,7 +104,7 @@ Monorepo **pnpm** (Node 22). Prérequis : `pnpm install`.
 | Commande | Effet |
 |---|---|
 | `pnpm build` | build lib de chaque package (`dist/` : ESM + CJS + `.d.ts`) |
-| `pnpm typecheck` | `tsc --noEmit` par package |
+| `pnpm typecheck` | `tsc --noEmit` par package et par exemple |
 | `pnpm test` | Vitest (tests colocalisés `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
 | **`pnpm validater`** | typecheck + lint + format:check + test — **le garde-fou complet**, rejoué en CI |

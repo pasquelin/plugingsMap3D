@@ -23,7 +23,7 @@ C'est **exactement** ce que rejoue la CI sur chaque PR. Une PR dont `validater` 
 | Commande | Effet |
 |---|---|
 | `pnpm build` | build lib de chaque package (`dist/` : ESM + CJS + `.d.ts`) |
-| `pnpm typecheck` | `tsc --noEmit` par package |
+| `pnpm typecheck` | `tsc --noEmit` par package et par exemple |
 | `pnpm test` | Vitest (tests colocalisés `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
 | `pnpm --filter @pasquelin/map3d-plugin-<nom>-example dev` | lance l'exemple d'un plugin |

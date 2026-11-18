@@ -104,7 +104,7 @@ propose an official plugin here, see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 | Command | Effect |
 |---|---|
 | `pnpm build` | library build for each package (`dist/`: ESM + CJS + `.d.ts`) |
-| `pnpm typecheck` | `tsc --noEmit` per package |
+| `pnpm typecheck` | `tsc --noEmit` per package and per example |
 | `pnpm test` | Vitest (colocated `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
 | **`pnpm validater`** | typecheck + lint + format:check + test — **the full gate**, replayed in CI |
