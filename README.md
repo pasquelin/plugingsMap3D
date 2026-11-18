@@ -51,8 +51,11 @@ npm i @pasquelin/map3d @pasquelin/map3d-plugin-geopf
 # or: pnpm add … / yarn add …
 ```
 
-`react`, `react-dom` (19), `three` (≥ 0.169) and `@pasquelin/map3d` (^0.2.0) are
-**peerDependencies** — never bundled by the plugins.
+`react`, `react-dom` (19), `three` (≥ 0.169) and `@pasquelin/map3d` (`>=0.2.0 <0.8.0`: 0.2
+through 0.7) are **peerDependencies** — never bundled by the plugins. The upper bound is raised
+with each new map3D minor, once the plugins have been checked against it: in `0.x`, a minor of
+the library may break the plugin contract. The examples of this repository need map3D ≥ 0.7.0
+(their optional Cesium ion token goes through its `@pasquelin/map3d/cesium-ion` entry).
 
 ## Quick start
 
@@ -85,6 +88,10 @@ pnpm --filter @pasquelin/map3d-plugin-geopf-example dev
 pnpm --filter @pasquelin/map3d-plugin-windy-example dev
 ```
 
+With no key at all, an example draws its basemap and its buildings from map3D's default internal
+origin — the one the library asks every application to replace with its own, through
+`providers.internal.origin` in the `config` prop of `<Map>`.
+
 ## Writing your own plugin
 
 ```bash
@@ -99,12 +106,12 @@ propose an official plugin here, see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ## Development
 
-**pnpm** monorepo (Node 22). Prerequisite: `pnpm install`.
+**pnpm** monorepo (Node ≥ 22.13, the floor of map3D 0.7). Prerequisite: `pnpm install`.
 
 | Command | Effect |
 |---|---|
 | `pnpm build` | library build for each package (`dist/`: ESM + CJS + `.d.ts`) |
-| `pnpm typecheck` | `tsc --noEmit` per package |
+| `pnpm typecheck` | `tsc --noEmit` per package and per example |
 | `pnpm test` | Vitest (colocated `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
 | **`pnpm validater`** | typecheck + lint + format:check + test — **the full gate**, replayed in CI |

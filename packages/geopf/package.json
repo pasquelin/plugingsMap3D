@@ -37,7 +37,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@pasquelin/map3d": "^0.2.0",
+    "@pasquelin/map3d": ">=0.2.0 <0.8.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "three": ">=0.169.0"

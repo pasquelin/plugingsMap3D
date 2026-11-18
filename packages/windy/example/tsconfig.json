@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    // Même chemin que l'alias de `vite.config.ts` : le plugin par ses SOURCES. Sans lui, tsc
+    // suivrait les `exports` du paquet vers `dist/`, absent tant qu'on n'a pas buildé.
+    "paths": { "@pasquelin/map3d-plugin-windy": ["../src/index.ts"] }
+  },
+  "include": ["src"]
+}
