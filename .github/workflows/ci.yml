@@ -1,6 +1,7 @@
 # Filet anti-régression : à chaque push sur main/develop et sur chaque PR, on rejoue le
 # même garde-fou que `pnpm validater` en local — typecheck strict, lint, format:check,
-# tests. Un test qui casse (ou un `any`/format qui glisse) bloque la fusion.
+# plage map3d, tests. Un test qui casse (ou un `any`/format qui glisse) bloque la fusion.
+# Un second job rejoue les paquets contre la plus ancienne map3d qu'ils annoncent.
 name: CI
 
 on:
@@ -32,6 +33,35 @@ jobs:
       - name: Installer les dépendances
         run: pnpm install --frozen-lockfile
 
-      # typecheck + lint + format:check + test — cf. le script `validater` de package.json.
-      - name: Valider (typecheck, lint, format, tests)
+      # typecheck + lint + format:check + check:range + test — cf. le script `validater` de package.json.
+      - name: Valider (typecheck, lint, format, plage map3d, tests)
         run: pnpm validater
+
+  # `validate` ne voit que la map3d des devDependencies, la plus récente de la plage. Ici, les
+  # paquets seuls — les exemples demandent la plus récente — contre la plus ancienne.
+  map3d-min:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Installer pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Installer Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Installer les dépendances
+        run: pnpm install --frozen-lockfile
+
+      # Borne basse lue dans les peerDependencies (scripts/map3d-range.mjs), jamais recopiée ici.
+      # En deux temps : une substitution qui échoue dans l'argument installerait la dernière map3d.
+      - name: Remplacer map3d par la borne basse de la plage
+        run: |
+          MIN="$(node scripts/map3d-range.mjs --min)"
+          pnpm add -Dw "@pasquelin/map3d@$MIN"
+
+      - name: Valider les paquets (typecheck, tests)
+        run: pnpm -r --filter "./packages/*" typecheck && pnpm test

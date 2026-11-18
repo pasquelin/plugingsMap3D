@@ -10,6 +10,9 @@
     "url": "git+https://github.com/pasquelin/plugingsMap3D.git"
   },
   "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=22.13"
+  },
   "scripts": {
     "build": "pnpm -r --filter=./packages/* build",
     "typecheck": "pnpm -r typecheck",
@@ -18,7 +21,8 @@
     "lint": "eslint packages",
     "format": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "format:check": "prettier --check \"packages/**/*.{ts,tsx}\"",
-    "validater": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test",
+    "check:range": "node scripts/map3d-range.mjs",
+    "validater": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm check:range && pnpm test",
     "version:plugins": "node scripts/version.mjs"
   },
   "devDependencies": {

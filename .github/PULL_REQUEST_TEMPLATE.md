@@ -24,7 +24,7 @@ Closes #
 
 - [ ] La PR cible **`develop`** (et non `main`).
 - [ ] Le titre suit les [Conventional Commits](https://www.conventionalcommits.org/fr/).
-- [ ] `pnpm validater` passe en local (typecheck + lint + format:check + test).
+- [ ] `pnpm validater` passe en local (typecheck + lint + format:check + check:range + test).
 - [ ] Des tests couvrent le changement (`*.test.ts` colocalisés).
 - [ ] L'exemple du plugin tourne toujours : `pnpm --filter @pasquelin/map3d-plugin-<nom>-example dev`.
 - [ ] `CHANGELOG.md` mis à jour sous `## [Non publié]` si le changement est visible pour l'utilisateur.

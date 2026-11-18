@@ -101,6 +101,11 @@ cp -r packages/plugin-template packages/mon-plugin
 pnpm install && pnpm validater
 ```
 
+L'exemple copié nomme encore le gabarit à quatre endroits, à renommer ensemble :
+`example/package.json` (`name` et la dépendance), l'import de `example/src/App.tsx`, la clé
+`paths` de `example/tsconfig.json` et l'alias de `example/vite.config.ts`. Renommé à moitié,
+l'exemple charge le gabarit à la place de votre plugin, sans aucune erreur.
+
 Le [contrat de plugin](https://github.com/pasquelin/map3D/blob/main/docs/fr/PLUGINS.md) (`definePlugin`,
 voies `enrich` / `markers` / `layer`) est documenté côté map3D. Pour proposer un plugin officiel
 ici, voir [CONTRIBUTING.md](../../.github/CONTRIBUTING.md).
@@ -115,7 +120,8 @@ Monorepo **pnpm** (Node ≥ 22.13, le plancher de map3D 0.7). Prérequis : `pnpm
 | `pnpm typecheck` | `tsc --noEmit` par package et par exemple |
 | `pnpm test` | Vitest (tests colocalisés `*.test.ts`) |
 | `pnpm lint` / `pnpm format` | ESLint / Prettier |
-| **`pnpm validater`** | typecheck + lint + format:check + test — **le garde-fou complet**, rejoué en CI |
+| `pnpm check:range` | la plage map3D des `peerDependencies` : la même dans chaque `package.json` et dans la documentation |
+| **`pnpm validater`** | typecheck + lint + format:check + check:range + test — **le garde-fou complet**, rejoué en CI |
 | `pnpm version:plugins X.Y.Z` | bump unifié (racine + `geopf` + `windy`) |
 
 Le code, les commentaires et la documentation sont **en français**. `any` est interdit
