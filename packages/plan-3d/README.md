@@ -52,7 +52,3 @@ pnpm --filter @pasquelin/map3d-plugin-plan-3d-example dev
 Nécessite `VITE_CESIUM_ION_TOKEN` (fichier `.env` du package `example/`) pour de vrais tuiles 3D ;
 sans token l'exemple retombe sur le globe ellipsoïde de repli (le cube reste visible, posé au sol
 de repli).
-
-L'exemple, lui, attend `@pasquelin/map3d` ≥ 0.7.0 : le token y passe par l'entrée à part de la lib,
-`<Map tileset3d={cesiumIon({ token })}>` avec `cesiumIon` importé de
-`@pasquelin/map3d/cesium-ion` (la prop `cesiumIonToken` a été retirée en 0.7.0).

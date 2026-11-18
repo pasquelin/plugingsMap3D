@@ -72,7 +72,3 @@ pnpm --filter @pasquelin/map3d-plugin-windy-example dev
 Nécessite `VITE_WINDY_API_KEY` (fichier `.env` du package `example/`, gitignoré) pour de vraies
 webcams, et `VITE_CESIUM_ION_TOKEN` pour de vrais bâtiments 3D (sinon repli sur le globe
 ellipsoïde). Active le plugin depuis le hub des plugins puis navigue sur la carte.
-
-L'exemple, lui, attend `@pasquelin/map3d` ≥ 0.7.0 : le token y passe par l'entrée à part de la lib,
-`<Map tileset3d={cesiumIon({ token })}>` avec `cesiumIon` importé de
-`@pasquelin/map3d/cesium-ion` (la prop `cesiumIonToken` a été retirée en 0.7.0).
